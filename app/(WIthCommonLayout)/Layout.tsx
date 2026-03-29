@@ -7,9 +7,7 @@ const DashboardLayout = ({children}: {children: React.ReactNode}) => {
         <div className="min-h-screen flex flex-col">
             <Navbar />
             <main className="flex-1
-            // remove this style 
-             text-center mt-40 text-2xl font-bold
-             //remove this style
+ 
              ">
                 {children}
             </main>
