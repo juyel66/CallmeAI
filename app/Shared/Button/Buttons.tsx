@@ -1,59 +1,43 @@
 "use client";
 
-import { useRef } from "react";
 import { gsap } from "gsap";
+import { useRouter } from "next/navigation";
 
 const Buttons = () => {
-    // Refs for Get Started button
-    const getStartedButtonRef = useRef<HTMLButtonElement>(null);
-    const getStartedSvgRef = useRef<SVGRectElement>(null);
-    const getStartedBgRef = useRef<HTMLDivElement>(null);
-
-    // Refs for Book a Demo button
-    const bookDemoButtonRef = useRef<HTMLButtonElement>(null);
-    const bookDemoSvgRef = useRef<SVGRectElement>(null);
-    const bookDemoBgRef = useRef<HTMLDivElement>(null);
-
-    // Refs for Pricing button
-    const pricingButtonRef = useRef<HTMLButtonElement>(null);
-    const pricingSvgRef = useRef<SVGRectElement>(null);
-    const pricingBgRef = useRef<HTMLDivElement>(null);
+    const router = useRouter();
 
     const hoverInDuration = 0.75;
     const hoverOutDuration = 0.9;
     const borderAnimationDuration = 2.5;
 
-    const createAnimateHoverIn = (
-        buttonRef: React.RefObject<HTMLButtonElement>,
-        svgRef: React.RefObject<SVGRectElement>,
-        bgRef: React.RefObject<HTMLDivElement>,
-        textColor: string,
-        borderColor: string
-    ) => {
-        return (e: React.MouseEvent<HTMLButtonElement>) => {
-            if (!buttonRef.current || !svgRef.current || !bgRef.current) {
+    const animateHoverIn = (e: React.MouseEvent<HTMLButtonElement>) => {
+            const button = e.currentTarget;
+            const svgRect = button.querySelector("[data-anim-stroke]") as SVGRectElement | null;
+            const bg = button.querySelector("[data-anim-bg]") as HTMLDivElement | null;
+
+            if (!svgRect || !bg) {
                 return;
             }
 
             // Kill any existing animations to prevent conflicts
-            gsap.killTweensOf(buttonRef.current);
-            gsap.killTweensOf(bgRef.current);
-            gsap.killTweensOf(svgRef.current);
+            gsap.killTweensOf(button);
+            gsap.killTweensOf(bg);
+            gsap.killTweensOf(svgRect);
 
             // Get mouse position relative to button
-            const rect = buttonRef.current.getBoundingClientRect();
+            const rect = button.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
 
             // Set background color
-            bgRef.current.style.background = "#7F20FF";
-            bgRef.current.style.opacity = "1";
+            bg.style.background = "#7F20FF";
+            bg.style.opacity = "1";
 
             // Initialize clip-path as a small circle at mouse position
-            bgRef.current.style.clipPath = `circle(0px at ${x}px ${y}px)`;
+            bg.style.clipPath = `circle(0px at ${x}px ${y}px)`;
 
             // Button color text animation
-            gsap.to(buttonRef.current, {
+            gsap.to(button, {
                 color: "#FFFFFF",
                 borderColor: "#6F14F1",
                 boxShadow: "0 14px 34px rgba(127, 32, 255, 0.4)",
@@ -66,7 +50,7 @@ const Buttons = () => {
                 Math.max(x, rect.width - x) ** 2 + Math.max(y, rect.height - y) ** 2
             ) + 30; // Add extra 30px to ensure full coverage of all button sizes and rounded corners
 
-            gsap.to(bgRef.current, {
+            gsap.to(bg, {
                 clipPath: `circle(${maxDistance}px at ${x}px ${y}px)`,
                 opacity: 1,
                 duration: hoverInDuration,
@@ -74,9 +58,9 @@ const Buttons = () => {
             });
 
             // SVG stroke animation - dash moving around the border
-            const circumference = 2 * (buttonRef.current.offsetWidth + buttonRef.current.offsetHeight - 16);
+            const circumference = 2 * (button.offsetWidth + button.offsetHeight - 16);
             
-            gsap.to(svgRef.current, {
+            gsap.to(svgRect, {
                 strokeDashoffset: -circumference,
                 opacity: 1,
                 duration: borderAnimationDuration,
@@ -84,66 +68,60 @@ const Buttons = () => {
                 repeat: -1,
             });
 
-            gsap.to(svgRef.current, {
+            gsap.to(svgRect, {
                 opacity: 1,
                 duration: 0.3,
             });
-        };
     };
 
-    const createAnimateHoverOut = (
-        buttonRef: React.RefObject<HTMLButtonElement>,
-        svgRef: React.RefObject<SVGRectElement>,
-        bgRef: React.RefObject<HTMLDivElement>,
-        textColor: string,
-        borderColor: string
-    ) => {
-        return () => {
-            if (!buttonRef.current || !svgRef.current || !bgRef.current) {
+    const animateHoverOut = (e: React.MouseEvent<HTMLButtonElement>) => {
+            const button = e.currentTarget;
+            const svgRect = button.querySelector("[data-anim-stroke]") as SVGRectElement | null;
+            const bg = button.querySelector("[data-anim-bg]") as HTMLDivElement | null;
+
+            if (!svgRect || !bg) {
                 return;
             }
 
+            const textColor = button.getAttribute("data-initial-text") || "#4C1D95";
+            const borderColor = button.getAttribute("data-initial-border") || "#C8B5FF";
+
             // Kill any existing animations to prevent conflicts
-            gsap.killTweensOf(buttonRef.current);
-            gsap.killTweensOf(bgRef.current);
-            gsap.killTweensOf(svgRef.current);
+            gsap.killTweensOf(button);
+            gsap.killTweensOf(bg);
+            gsap.killTweensOf(svgRect);
 
             // Button color text animation - return to initial state
-            gsap.to(buttonRef.current, {
+            gsap.to(button, {
                 color: textColor,
                 borderColor: borderColor,
                 boxShadow: "0 0 0 rgba(127, 32, 255, 0)",
                 duration: hoverOutDuration,
                 ease: "power3.out",
                 onComplete: () => {
-                    if (buttonRef.current) {
-                        buttonRef.current.style.color = textColor;
-                    }
+                    button.style.color = textColor;
                 },
             });
 
             // Background fade out - shrink circle
-            gsap.to(bgRef.current, {
+            gsap.to(bg, {
                 clipPath: "circle(0px at 50% 50%)",
                 opacity: 0,
                 duration: hoverOutDuration,
                 ease: "power3.out",
                 onComplete: () => {
-                    if (bgRef.current) {
-                        bgRef.current.style.background = "";
-                        bgRef.current.style.clipPath = "";
-                        bgRef.current.style.opacity = "0";
-                    }
+                    bg.style.background = "";
+                    bg.style.clipPath = "";
+                    bg.style.opacity = "0";
                 },
             });
 
             // Stop and hide SVG stroke
-            gsap.to(svgRef.current, {
+            gsap.to(svgRect, {
                 opacity: 0,
                 duration: hoverOutDuration,
                 ease: "power3.out",
             });
-        };
     };
 
     return (
@@ -153,15 +131,17 @@ const Buttons = () => {
 
             {/* Book a Demo Button */}
             <button 
-                ref={bookDemoButtonRef}
-                onMouseEnter={createAnimateHoverIn(bookDemoButtonRef, bookDemoSvgRef, bookDemoBgRef, "#FFFFFF", "#6F14F1")}
-                onMouseLeave={createAnimateHoverOut(bookDemoButtonRef, bookDemoSvgRef, bookDemoBgRef, "#FFFFFF", "#6F14F1")}
+                data-initial-text="#FFFFFF"
+                data-initial-border="#6F14F1"
+                onClick={() => router.push("/contact")}
+                onMouseEnter={animateHoverIn}
+                onMouseLeave={animateHoverOut}
                 className="relative overflow-visible cursor-pointer rounded-xl border border-none bg-[#7F20FF] px-8 py-4 text-lg font-semibold text-white shadow-lg"
             >
-                <div ref={bookDemoBgRef} className="absolute inset-0 rounded-xl pointer-events-none opacity-0" />
+                <div data-anim-bg className="absolute inset-0 rounded-xl pointer-events-none opacity-0" />
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-0" viewBox="0 0 100% 100%" preserveAspectRatio="none">
                     <rect
-                        ref={bookDemoSvgRef}
+                        data-anim-stroke
                         x="2" y="2"
                         width="100%" height="100%"
                         fill="none" stroke="#FFFFFF" strokeWidth="2"
@@ -179,15 +159,17 @@ const Buttons = () => {
 
             {/* Pricing Button */}
             <button 
-                ref={getStartedButtonRef}
-                onMouseEnter={createAnimateHoverIn(getStartedButtonRef, getStartedSvgRef, getStartedBgRef, "#4C1D95", "#C8B5FF")}
-                onMouseLeave={createAnimateHoverOut(getStartedButtonRef, getStartedSvgRef, getStartedBgRef, "#4C1D95", "#C8B5FF")}
+                data-initial-text="#4C1D95"
+                data-initial-border="#C8B5FF"
+                onClick={() => router.push("/pricing")}
+                onMouseEnter={animateHoverIn}
+                onMouseLeave={animateHoverOut}
                 className="relative overflow-visible cursor-pointer rounded-xl border border-[#C8B5FF]  px-8 py-4 text-lg font-semibold text-[#4C1D95]"
             >
-                <div ref={getStartedBgRef} className="absolute inset-0 rounded-xl pointer-events-none opacity-0" />
+                <div data-anim-bg className="absolute inset-0 rounded-xl pointer-events-none opacity-0" />
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-0" viewBox="0 0 100% 100%" preserveAspectRatio="none">
                     <rect
-                        ref={getStartedSvgRef}
+                        data-anim-stroke
                         x="2" y="2"
                         width="100%" height="100%"
                         fill="none" stroke="#6F14F1" strokeWidth="2"
