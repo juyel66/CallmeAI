@@ -4,13 +4,16 @@ import Navbar from "../pages/Navbar/Navbar";
 
 const DashboardLayout = ({children}: {children: React.ReactNode}) => {
     return (
-        <div>
-            
-           
+        <div className="min-h-screen flex flex-col">
             <Navbar />
-             {children}
+            <main className="flex-1
+            // remove this style 
+             text-center mt-40 text-2xl font-bold
+             //remove this style
+             ">
+                {children}
+            </main>
             <Footer />
-            
         </div>
     );
 };
