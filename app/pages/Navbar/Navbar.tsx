@@ -57,7 +57,7 @@ const Navbar = () => {
 
                 <Link
                     href="/demo"
-                    className="hidden rounded-[12px] bg-[#7F20FF] px-8 py-4 text-[26px] font-medium leading-none text-white transition-colors duration-200 hover:bg-[#6F14F1] lg:inline-flex"
+                    className="hidden rounded-[12px] bg-[#7F20FF] px-8 py-4 text-[20px] font-medium leading-none text-white transition-colors duration-200 hover:bg-[#6F14F1] lg:inline-flex"
                 >
                     Book a demo
                 </Link>
