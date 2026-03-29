@@ -1,12 +1,12 @@
-import React from 'react';
 
-const page = () => {
+
+const HomePage = () => {
     return (
         <div>
-            This is home page...
+            This is home pages....
             
         </div>
     );
 };
 
-export default page;
+export default HomePage;
