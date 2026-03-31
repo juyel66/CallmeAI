@@ -1,11 +1,16 @@
 import Image from "next/image";
 import React from "react";
 import Buttons from "../Shared/Button/Buttons";
+import InfiniteSlider from "../pages/Slider/InfiniteSlider";
+import HowItWork from "../pages/HowItWork/HowItWork";
 
 const HeroSection: React.FC = () => {
+
+
   return (
-    <section className="bg-[#F5F6F8] py-16">
-      <div className="max-w-7xl  mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-6">
+    <>
+      <section className="bg-[#F5F6F8] py-16">
+        <div className="container  mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-6">
 
         {/* LEFT CONTENT */}
         <div className="max-w-xl">
@@ -44,8 +49,15 @@ const HeroSection: React.FC = () => {
           <div className="absolute inset-0 rounded-2xl border border-purple-400 opacity-30 blur-sm"></div>
         </div>
 
-      </div>
-    </section>
+        </div>
+      </section>
+
+      <InfiniteSlider />
+
+      <HowItWork />
+
+      
+    </>
   );
 };
 
