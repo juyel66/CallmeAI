@@ -1,9 +1,11 @@
+import InfiniteSlider from "@/app/pages/Slider/InfiniteSlider";
 
 
 const page = () => {
     return (
         <div>
-            This is solutions page...
+        
+            <InfiniteSlider />
             
         </div>
     );
