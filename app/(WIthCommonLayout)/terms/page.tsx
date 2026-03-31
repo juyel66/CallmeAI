@@ -7,6 +7,7 @@ const page = () => {
         <div>
             <TermsAndConditions />
             
+            
         </div>
     );
 };
