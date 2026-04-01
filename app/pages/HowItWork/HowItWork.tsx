@@ -1,95 +1,219 @@
 "use client";
 
-import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { Bell, CircleAlert, Database, Headset, MessagesSquare, PhoneCall } from "lucide-react";
 
 const howItWorksData = [
     {
         id: 1,
-        icon: "📅",
-        image: "/images/image 1.svg",
-        title: "Appointment Booked On Calendar",
-        description: "Prequalified appointments are scheduled straight into your calendar.",
+        icon: CircleAlert,
+        step: "Step 01",
+        title: "Leads Instantly Contacted",
+        description: "Reach every new lead within seconds no delays, no lost opportunities.",
     },
     {
         id: 2,
-        icon: "🤖",
-        image: "/images/image 2.svg",
-        title: "AI Agent Calls New Leads",
-        description: "The AI agent follows up immediately so no lead goes cold.",
+        icon: MessagesSquare,
+        step: "Step 02",
+        title: "Multi-Touch Follow-Up",
+        description: "AI phone agent handles conversations professionally and filters out low-quality leads.",
     },
     {
         id: 3,
-        icon: "📝",
-        image: "/images/image 1.svg",
-        title: "Lead Qualification In Real Time",
-        description: "Each conversation is scored and qualified based on your conditions.",
+        icon: Headset,
+        step: "Step 03",
+        title: "Qualified Calls Booked",
+        description: "High-intent leads are routed to your calendar so your team only speaks with ready buyers.",
     },
     {
         id: 4,
-        icon: "🔔",
-        image: "/images/image 2.svg",
-        title: "Instant Team Notification",
-        description: "Your team gets instant updates when high-intent prospects respond.",
+        icon: PhoneCall,
+        step: "Step 04",
+        title: "Instant Agent Handoff",
+        description: "When prospects are ready, the conversation is handed to your sales team at the right moment.",
     },
     {
         id: 5,
-        icon: "📊",
-        image: "/images/image 1.svg",
-        title: "Automatic CRM Sync",
-        description: "Call notes and statuses are synced to your CRM without manual work.",
+        icon: Bell,
+        step: "Step 05",
+        title: "Real-Time Alerts",
+        description: "Your team gets immediate notifications when qualified leads take high-intent actions.",
     },
     {
         id: 6,
-        icon: "🚀",
-        image: "/images/image 2.svg",
-        title: "Scale Outreach On Autopilot",
-        description: "Run consistent outreach 24/7 while your team focuses on closing.",
+        icon: Database,
+        step: "Step 06",
+        title: "CRM Auto Sync",
+        description: "Call summaries, tags, and lead status are synced to CRM automatically without manual updates.",
     },
 ];
 
+const CARD_HEIGHT = 224;
+const CARD_GAP = 16;
+const STEP_SIZE = CARD_HEIGHT + CARD_GAP;
+const MOVE_THRESHOLD = 34;
+const MOVE_COOLDOWN = 280;
+
 export default function HowItWork() {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [isPaused, setIsPaused] = useState(false);
+    const dragStartYRef = useRef<number | null>(null);
+    const lastTriggerRef = useRef(0);
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    const total = howItWorksData.length;
+
+    const nextSlide = () => {
+        setCurrentIndex((prev) => (prev + 1) % total);
+    };
+
+    const prevSlide = () => {
+        setCurrentIndex((prev) => (prev - 1 + total) % total);
+    };
+
+    const triggerMove = (deltaY: number) => {
+        const now = Date.now();
+        if (now - lastTriggerRef.current < MOVE_COOLDOWN) return;
+
+        // Mouse up (negative deltaY) - cards go up.
+        if (deltaY < -MOVE_THRESHOLD) {
+            nextSlide();
+            lastTriggerRef.current = now;
+            return;
+        }
+
+        // Mouse down (positive deltaY) - cards go down.
+        if (deltaY > MOVE_THRESHOLD) {
+            prevSlide();
+            lastTriggerRef.current = now;
+        }
+    };
+
+    useEffect(() => {
+        if (isPaused) return;
+
+        const timerId = window.setInterval(() => {
+            setCurrentIndex((prev) => (prev + 1) % total);
+        }, 2600);
+
+        return () => {
+            window.clearInterval(timerId);
+        };
+    }, [isPaused, total]);
+
+    // Prevent page scroll when interacting with the carousel
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container) return;
+
+        const preventScroll = (e: WheelEvent) => {
+            e.preventDefault();
+        };
+
+        container.addEventListener('wheel', preventScroll, { passive: false });
+        
+        return () => {
+            container.removeEventListener('wheel', preventScroll);
+        };
+    }, []);
+
     return (
-        <section className="how-it-works-stack bg-[#F7F7F8] py-16">
-            <div className="container mx-auto px-6">
-                <div className="mx-auto mb-12 max-w-3xl text-center">
-                    <h2 className="text-4xl font-bold text-[#171717] md:text-5xl">How It Works</h2>
-                    <p className="mt-3 text-lg text-[#5B5B5B] md:text-xl">
-                        From first contact to booked meeting, each step runs in sequence and keeps your sales pipeline
-                        moving.
-                    </p>
+        <section className="w-full select-none bg-[#dddddf] py-14 md:py-16" onCopy={(e) => e.preventDefault()}>
+            <div className="container mx-auto grid grid-cols-1 gap-8 px-4 sm:px-6 lg:grid-cols-[240px_1fr] lg:items-center lg:gap-14">
+                <div className="flex flex-col items-center lg:items-start">
+                    <h2 className="whitespace-nowrap text-4xl font-bold text-black md:text-5xl">How It Works</h2>
+                    <button
+                        type="button"
+                        className="mt-5 self-center rounded-xl bg-[#7F20FF] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#6f14f1]"
+                    >
+                        Book a demo <span aria-hidden="true">→</span>
+                    </button>
                 </div>
 
-                <div className="mx-auto max-w-6xl space-y-6 pb-40">
-                    {howItWorksData.map((item, index) => (
-                        <article
-                            key={item.id}
-                            className="how-card sticky w-full rounded-3xl border border-[#BEBEBE] bg-[#ECECEC] p-6 text-center shadow-[0_20px_40px_rgba(0,0,0,0.08)] md:p-8"
-                            style={{
-                                top: `${96 + index * 18}px`,
-                                zIndex: index + 10,
-                            }}
-                        >
-                            <div className="mx-auto mb-6 overflow-hidden rounded-2xl border border-[#D8D8D8] bg-white">
-                                <Image
-                                    src={item.image}
-                                    alt={item.title}
-                                    width={1200}
-                                    height={640}
-                                    className="h-64 w-full object-cover md:h-80"
-                                />
-                            </div>
+                <div className="w-full rounded-3xl bg-[#d8cee9] p-2 sm:p-3 lg:max-w-4xl lg:justify-self-center">
+                    <div
+                        ref={containerRef}
+                        className="relative h-172 cursor-grab overflow-hidden rounded-2xl touch-none active:cursor-grabbing"
+                        onMouseEnter={() => setIsPaused(true)}
+                        onMouseLeave={() => {
+                            setIsPaused(false);
+                            dragStartYRef.current = null;
+                        }}
+                        onWheel={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            // Scroll up (negative deltaY) - cards go up
+                            // Scroll down (positive deltaY) - cards go down
+                            triggerMove(e.deltaY);
+                        }}
+                        onMouseDown={(e) => {
+                            dragStartYRef.current = e.clientY;
+                        }}
+                        onMouseMove={(e) => {
+                            if (dragStartYRef.current === null) return;
+                            
+                            const deltaY = e.clientY - dragStartYRef.current;
+                            if (Math.abs(deltaY) < MOVE_THRESHOLD) return;
+                            
+                            // Drag up (negative deltaY) - cards go up
+                            // Drag down (positive deltaY) - cards go down
+                            triggerMove(deltaY);
+                            dragStartYRef.current = e.clientY;
+                        }}
+                        onMouseUp={() => {
+                            dragStartYRef.current = null;
+                        }}
+                        onPointerDown={(e) => {
+                            dragStartYRef.current = e.clientY;
+                            e.currentTarget.setPointerCapture(e.pointerId);
+                        }}
+                        onPointerMove={(e) => {
+                            if (dragStartYRef.current === null) return;
 
-                            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#E0E0E0] text-2xl">
-                                <span aria-hidden="true">{item.icon}</span>
-                            </div>
-                            <h3 className="mt-5 text-3xl leading-tight font-semibold text-[#111111] md:text-[40px]">
-                                {item.title}
-                            </h3>
-                            <p className="mx-auto mt-4 max-w-4xl text-lg text-[#3D3D3D] md:text-2xl">
-                                {item.description}
-                            </p>
-                        </article>
-                    ))}
+                            const deltaY = e.clientY - dragStartYRef.current;
+                            if (Math.abs(deltaY) < MOVE_THRESHOLD) return;
+
+                            // Touch drag - works the same way
+                            triggerMove(deltaY);
+                            dragStartYRef.current = e.clientY;
+                        }}
+                        onPointerUp={() => {
+                            dragStartYRef.current = null;
+                        }}
+                        onPointerCancel={() => {
+                            dragStartYRef.current = null;
+                        }}
+                    >
+                        {howItWorksData.map((item, index) => {
+                            let offset = index - currentIndex;
+                            if (offset > total / 2) offset -= total;
+                            if (offset < -total / 2) offset += total;
+
+                            const isActive = offset === 0;
+                            const isVisible = Math.abs(offset) <= 1;
+                            const Icon = item.icon;
+
+                            return (
+                                <article
+                                    key={item.id}
+                                    className="absolute inset-x-1 flex h-56 flex-col items-center justify-center rounded-2xl border border-[#A14DFF] bg-[#e7e4ea] px-5 text-center shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-[transform,filter,opacity] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] sm:px-8"
+                                    style={{
+                                        top: "50%",
+                                        transform: `translateY(calc(-50% + ${offset * STEP_SIZE}px)) scale(${isActive ? 1 : 0.95})`,
+                                        filter: isActive ? "blur(0px)" : isVisible ? "blur(2px)" : "blur(8px)",
+                                        opacity: isVisible ? (isActive ? 1 : 0.72) : 0,
+                                        zIndex: isActive ? 20 : isVisible ? 10 : 0,
+                                        pointerEvents: isVisible ? "auto" : "none",
+                                    }}
+                                >
+                                    <Icon className="h-5 w-5 text-[#2c2c2c]" strokeWidth={1.8} />
+                                    <p className="mt-4 text-2xl text-[#2c2c2c]">{item.step}</p>
+                                    <h3 className="mt-3 text-4xl font-bold leading-tight text-black md:text-5xl">{item.title}</h3>
+                                    <p className="mt-3 max-w-4xl text-2xl leading-snug text-[#1f1f1f]">{item.description}</p>
+                                </article>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
         </section>
