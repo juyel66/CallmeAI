@@ -125,7 +125,7 @@ const Buttons = () => {
     };
 
     return (
-        <div className="space-x-3">
+        <div className="flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:justify-center">
             {/* Get Started Button */}
          
 
@@ -136,7 +136,7 @@ const Buttons = () => {
                 onClick={() => router.push("/contact")}
                 onMouseEnter={animateHoverIn}
                 onMouseLeave={animateHoverOut}
-                className="relative overflow-visible cursor-pointer rounded-xl border border-none bg-[#7F20FF] px-8 py-4 text-lg font-semibold text-white shadow-lg"
+                className="relative w-full cursor-pointer overflow-visible rounded-xl border border-none bg-[#7F20FF] px-6 py-3 text-base font-semibold text-white shadow-lg sm:w-auto sm:px-8 sm:py-4 sm:text-lg"
             >
                 <div data-anim-bg className="absolute inset-0 rounded-xl pointer-events-none opacity-0" />
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-0" viewBox="0 0 100% 100%" preserveAspectRatio="none">
@@ -149,7 +149,7 @@ const Buttons = () => {
                         rx="10" ry="10"
                     />
                 </svg>
-                <span className="relative z-10 flex items-center gap-2">
+                <span className="relative z-10 flex w-full items-center justify-center gap-2">
                     Book a demo 
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="ml-1">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -159,12 +159,12 @@ const Buttons = () => {
 
             {/* Pricing Button */}
             <button 
-                data-initial-text="#4C1D95"
+                data-initial-text="#FFFFFF"
                 data-initial-border="#C8B5FF"
                 onClick={() => router.push("/pricing")}
                 onMouseEnter={animateHoverIn}
                 onMouseLeave={animateHoverOut}
-                className="relative overflow-visible cursor-pointer rounded-xl border border-[#C8B5FF]  px-8 py-4 text-lg font-semibold text-[#4C1D95]"
+                className="relative w-full cursor-pointer overflow-visible rounded-xl border border-[#C8B5FF] px-6 py-3 text-base font-semibold text-white sm:w-auto sm:px-8 sm:py-4 sm:text-lg"
             >
                 <div data-anim-bg className="absolute inset-0 rounded-xl pointer-events-none opacity-0" />
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-0" viewBox="0 0 100% 100%" preserveAspectRatio="none">
@@ -177,7 +177,7 @@ const Buttons = () => {
                         rx="10" ry="10"
                     />
                 </svg>
-                <span className="relative z-10">Pricing</span>
+                <span className="relative z-10 flex w-full items-center justify-center">Pricing</span>
             </button>
         </div>
     );
