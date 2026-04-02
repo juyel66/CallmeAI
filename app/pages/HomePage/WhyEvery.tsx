@@ -5,7 +5,6 @@ import TreeNumberIcons from "../../../public/images/Component 4 (2).svg";
 import TreeNumberIconsB from "../../../public/images/Component 4 (3).svg";
 import TreeNumberIconsBa from "../../../public/images/Component 4 (4).svg";
 import TreeNumberIconsBac from "../../../public/images/Component 4 (5).svg";
-import {  Clock, Activity, XCircle, PhoneCall, AlertTriangle } from "lucide-react";
 
 const items = [
   {
@@ -59,18 +58,13 @@ const WhyEvery = () => {
         {/* Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {items.map((item, index) => {
-            const Icon = item.icon;
             return (
               <div
                 key={index}
                 className="flex items-center gap-3 p-4 rounded-xl border border-gray-200 bg-gray-100 shadow-sm hover:shadow-md transition"
               >
                 <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white ">
-                  {item.customIcon ? (
-                    <Image src={item.customIcon} alt="clock icon" width={20} height={20} />
-                  ) : (
-                    <Icon className="w-5 h-5 text-gray-600 " />
-                  )}
+                  <Image src={item.customIcon} alt="feature icon" width={20} height={20} />
                 </div>
                 <p className="text-sm text-gray-700 text-left">{item.text}</p>
               </div>
