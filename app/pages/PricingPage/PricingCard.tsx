@@ -8,7 +8,7 @@ const plans = [
   {
     title: "Essential",
     price: "$425",
-    subtitle: "/(4 weeks)",
+    subtitle: "(4 weeks)",
     description:
       "Your foundation for faster lead response with AI-driven outreach so leads don’t slip through the cracks.",
     button: "Get Started →",
@@ -28,7 +28,7 @@ const plans = [
   {
     title: "Growth",
     price: "$795",
-    subtitle: "/(4 weeks)",
+    subtitle: "(4 weeks)",
     description:
       "Designed for high-volume operations to fully automate and optimize your sales pipeline",
     button: "Grow Faster",
@@ -48,7 +48,7 @@ const plans = [
   {
     title: "Enterprise",
     price: "$1,395",
-    subtitle: "/(4 weeks)",
+    subtitle: "(4 weeks)",
     description:
       "Designed for high-volume operations to fully automate and optimize your sales pipeline",
     button: "Scale Now →",
@@ -87,25 +87,20 @@ const plans = [
   },
 ];
 
-
-
 const PricingCard = () => {
   return (
     <section className="w-full bg-[#f3f3f3] py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-
         {/* GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
           {plans.map((plan, index) => (
             <div
               key={index}
               className={`
-                relative rounded-2xl border bg-white p-6 flex flex-col
-                ${plan.highlight ? "border-[#7F20FF] shadow-lg" : "border-gray-300"}
+                relative rounded-2xl border-2 bg-white hover:scale-[1.01] hover:shadow-lg p-6 flex flex-col
+                ${plan.highlight ? "border-[#8E00FF] shadow-lg" : "border-gray-300"}
               `}
             >
-
               {/* MOST POPULAR */}
               {plan.highlight && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#A533FF] text-white text-xs px-3 py-1 rounded-full">
@@ -114,18 +109,17 @@ const PricingCard = () => {
               )}
 
               {/* TITLE */}
-              <h3 className="text-lg font-semibold text-black">
-                {plan.title}
-              </h3>
+              <h3 className="text-lg font-semibold text-black">{plan.title}</h3>
 
               {/* DESCRIPTION */}
-              <p className="mt-3 text-sm text-gray-600">
-                {plan.description}
-              </p>
+              <p className="mt-3 text-sm text-gray-600">{plan.description}</p>
 
               {/* PRICE */}
               <div className="mt-4 text-2xl font-bold text-black">
                 {plan.price}
+
+                {plan.price !== "Flexible" && "/"}
+
                 <span className="text-sm font-normal text-gray-500">
                   {plan.subtitle}
                 </span>
@@ -137,9 +131,7 @@ const PricingCard = () => {
               )}
 
               {plan.title === "Growth" && (
-                <button
-                  className="mt-4  rounded-lg bg-[#8E00FF] px-4 py-4.5 text-sm font-medium text-white transition hover:bg-[#A533FF]"
-                >
+                <button className="mt-4  rounded-lg bg-[#8E00FF] px-4 py-4.5 text-sm font-medium text-white transition hover:bg-[#A533FF]">
                   <span className="flex items-center justify-center gap-2">
                     {plan.button}
                     <svg
@@ -176,10 +168,8 @@ const PricingCard = () => {
                   </li>
                 ))}
               </ul>
-
             </div>
           ))}
-
         </div>
       </div>
     </section>
