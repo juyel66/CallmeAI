@@ -19,7 +19,7 @@ const Navbar = () => {
     const isActive = (href: string) => pathname === href;
 
     return (
-        <header className="w-full flex justify-center py-6">
+        <header className="w-full flex justify-center py-6 fixed top-0 left-0 z-50 bg-transparent">
             <div className="w-full max-w-6xl px-4">
                 
                 {/* NAVBAR */}
