@@ -136,7 +136,7 @@ const Buttons = () => {
                 onClick={() => router.push("/contact")}
                 onMouseEnter={animateHoverIn}
                 onMouseLeave={animateHoverOut}
-                className="relative w-full cursor-pointer overflow-visible rounded-xl border border-none bg-[#7F20FF] px-6 py-3 text-base font-semibold text-white shadow-lg sm:w-auto sm:px-8 sm:py-4 sm:text-lg"
+                className="relative w-full cursor-pointer overflow-visible rounded-xl border border-none bg-[#8E00FF] px-6 py-3 text-base font-semibold text-white shadow-lg sm:w-auto sm:px-8 sm:py-4 sm:text-lg"
             >
                 <div data-anim-bg className="absolute inset-0 rounded-xl pointer-events-none opacity-0" />
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-0" viewBox="0 0 100% 100%" preserveAspectRatio="none">
