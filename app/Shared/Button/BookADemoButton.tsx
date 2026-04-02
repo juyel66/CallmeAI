@@ -5,7 +5,11 @@
 import { gsap } from "gsap";
 import { useRouter } from "next/navigation";
 
-const BookADemoButton = () => {
+type BookADemoButtonProps = {
+    className?: string;
+};
+
+const BookADemoButton = ({ className = "" }: BookADemoButtonProps) => {
     const router = useRouter();
 
     const hoverInDuration = 0.75;
@@ -61,13 +65,14 @@ const BookADemoButton = () => {
 
         const textColor = button.getAttribute("data-initial-text") || "#6F14F1";
         const borderColor = button.getAttribute("data-initial-border") || "#C8B5FF";
+        const initialBg = button.getAttribute("data-initial-bg") || "#FFFFFF";
 
         gsap.killTweensOf(button);
         gsap.killTweensOf(bg);
 
         gsap.to(button, {
             color: textColor,
-            backgroundColor: "#FFFFFF",
+            backgroundColor: initialBg,
             borderColor,
             boxShadow: "0 0 0 rgba(127, 32, 255, 0)",
             duration: hoverOutDuration,
@@ -94,10 +99,11 @@ const BookADemoButton = () => {
         <button
             data-initial-text="#6F14F1"
             data-initial-border="#C8B5FF"
+            data-initial-bg="#FFFFFF"
             onClick={() => router.push("/contact")}
             onMouseEnter={animateHoverIn}
             onMouseLeave={animateHoverOut}
-            className="relative w-full cursor-pointer overflow-hidden rounded-xl border border-[#C8B5FF] bg-white px-6 py-3 text-base font-semibold text-[#6F14F1] sm:w-auto sm:px-8 sm:py-4 sm:text-lg"
+            className={`relative w-full cursor-pointer overflow-hidden rounded-xl border border-[#C8B5FF] bg-white px-6 py-3 text-base font-semibold text-[#6F14F1] sm:w-auto sm:px-8 sm:py-4 sm:text-lg ${className}`}
         >
             <div data-anim-bg className="pointer-events-none absolute inset-0 rounded-xl opacity-0" />
             <span className="relative z-10 flex w-full items-center justify-center gap-2">
