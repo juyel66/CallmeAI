@@ -1,8 +1,18 @@
+import AIJustGot from "@/app/pages/AIJustGot/AIJustGot";
+import AiSolutions from "@/app/pages/AiSolutions/AiSolutions";
 import HowItWork from "@/app/pages/HowItWork/HowItWork";
 import InfiniteSlider from "@/app/pages/Slider/InfiniteSlider";
+import Human from "@/app/pages/SolutionPage/HumanlikeAItrust/Human";
+
+
+import SolutionHowItWork from "@/app/pages/SolutionPage/SolutionHowItWork/SolutionHowItWork";
+import SolutionsHeroPages from "@/app/pages/SolutionPage/SolutionsHero/SolutionsHeroPages";
+
+// import SolutionsHeroPages from "@/app/pages/SolutionPage/SolutionsHero/SolutionsHeroPages";
 import Buttons from "@/app/Shared/Button/Buttons";
 import Image from "next/image";
 import React from "react";
+
 
 
 const Solutions: React.FC = () => {
@@ -10,10 +20,21 @@ const Solutions: React.FC = () => {
 
   return (
     <>
-      <section className="bg-[#F5F6F8] py-16">
+
+    <SolutionsHeroPages />
+    <SolutionHowItWork />
+    <Human />
+    <AiSolutions />
+
+    
+
+
+
+
+    
+      {/* <section className="bg-[#F5F6F8] py-16">
         <div className="container  mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-6">
 
-        {/* LEFT CONTENT */}
         <div className="max-w-xl">
 
           <h1 className="text-[36px] leading-[1.2] font-bold text-black">
@@ -26,14 +47,14 @@ const Solutions: React.FC = () => {
             high-quality appointments on autopilot.
           </p>
 
-          {/* BUTTONS */}
+       
        <div className="mt-8">
          <Buttons />
        </div>
 
         </div>
 
-        {/* RIGHT IMAGE */}
+       
         <div className="relative">
           <div className="rounded-2xl overflow-hidden   shadow-lg">
             <Image
@@ -46,16 +67,20 @@ const Solutions: React.FC = () => {
             
           </div>
 
-          {/* Glow effect */}
+         
           <div className="absolute inset-0 rounded-2xl border border-purple-400 opacity-30 blur-sm"></div>
         </div>
 
         </div>
       </section>
+          */}
 
-      <InfiniteSlider />
+      {/* <InfiniteSlider />
+      <AIJustGot />
+      
 
-      <HowItWork />
+      <HowItWork /> */}
+     
 
       
     </>
