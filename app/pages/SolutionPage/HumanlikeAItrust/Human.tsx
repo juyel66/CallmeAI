@@ -77,7 +77,7 @@ const Human = () => {
                 alt="AI conversation"
                 width={620}
                 height={380}
-                className="h-80 w-full  rounded-xl object-cover lg:h-96"
+                className="md:h-80 w-full  rounded-xl md:object-cover lg:h-96"
               />
 
               {/* CHAT BUBBLES (UI MOCK) */}
