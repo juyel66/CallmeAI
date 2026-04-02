@@ -5,7 +5,7 @@ import Image from "next/image";
 const Footer = () => {
     return (
         <footer className="bg-[#0F172A]">
-            <div className="mx-auto w-full max-w-[1240px] px-4 py-12 sm:px-6 md:px-10">
+            <div className="mx-auto w-full container px-4 py-12 sm:px-6 md:px-10">
                 {/* Main Content */}
                 <div className="grid grid-cols-1 gap-12 md:grid-cols-4">
                     {/* Logo & Tagline */}
@@ -94,7 +94,19 @@ const Footer = () => {
                             href="/contact"
                             className="inline-flex text-[14px] font-medium text-[#a06ee0] transition-colors duration-200 hover:text-[#9944FF]"
                         >
-                            Contact us <span className="ml-2">→</span>
+                            Contact us   <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="ml-1 mt-1"
+                >
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
                         </Link>
                     </div>
                 </div>
