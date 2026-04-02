@@ -3,7 +3,7 @@ import ContactPage from "@/app/pages/ContactPage/ContactPage";
 
 const page = () => {
     return (
-        <div>
+        <div className="bg-gradient-to-br from-[#ffffff] via-[#ffffff] to-[#dbc6f1]">
             <ContactPage />
             
         </div>
