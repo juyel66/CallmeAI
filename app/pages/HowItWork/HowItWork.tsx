@@ -100,6 +100,7 @@ export default function HowItWork() {
             window.clearInterval(timerId);
         };
     }, [isPaused, total]);
+    
 
     // Prevent page scroll when interacting with the carousel
     useEffect(() => {
@@ -118,22 +119,22 @@ export default function HowItWork() {
     }, []);
 
     return (
-        <section className="w-full select-none bg-[#dddddf] py-14 md:py-16" onCopy={(e) => e.preventDefault()}>
-            <div className="container mx-auto grid grid-cols-1 gap-8 px-4 sm:px-6 lg:grid-cols-[240px_1fr] lg:items-center lg:gap-14">
-                <div className="flex flex-col items-center lg:items-start">
-                    <h2 className="whitespace-nowrap text-4xl font-bold text-black md:text-5xl">How It Works</h2>
+        <section className="w-full   select-none py-10 sm:py-12 md:py-16 bg-gradient-to-r from-[#f3e8ff] via-[#faf5ff] to-[#e9d5ff]" onCopy={(e) => e.preventDefault()}>
+            <div className="container mx-auto grid grid-cols-1 gap-5 px-4 sm:px-6 lg:grid-cols-[240px_1fr] lg:items-center lg:gap-14">
+                <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+                    <h2 className="text-3xl font-bold text-black sm:text-4xl md:text-5xl lg:whitespace-nowrap">How It Works</h2>
                     <button
                         type="button"
-                        className="mt-5 self-center rounded-xl bg-[#7F20FF] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#6f14f1]"
+                        className="mt-4 self-center rounded-xl bg-[#8E00FF] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#6f14f1] sm:px-6 sm:py-3 lg:ml-13"
                     >
                         Book a demo <span aria-hidden="true">→</span>
                     </button>
                 </div>
 
-                <div className="w-full rounded-3xl bg-[#d8cee9] p-2 sm:p-3 lg:max-w-4xl lg:justify-self-center">
+                <div className="w-full rounded-3xl bg-white/70 p-2 sm:p-3 lg:max-w-5xl lg:justify-self-center">
                     <div
                         ref={containerRef}
-                        className="relative h-172 cursor-grab overflow-hidden rounded-2xl touch-none active:cursor-grabbing"
+                        className="relative h-96 cursor-grab overflow-hidden rounded-2xl touch-none active:cursor-grabbing sm:h-112 lg:h-172"
                         onMouseEnter={() => setIsPaused(true)}
                         onMouseLeave={() => {
                             setIsPaused(false);
@@ -196,20 +197,20 @@ export default function HowItWork() {
                             return (
                                 <article
                                     key={item.id}
-                                    className="absolute inset-x-1 flex h-56 flex-col items-center justify-center rounded-2xl border border-[#A14DFF] bg-[#e7e4ea] px-5 text-center shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-[transform,filter,opacity] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] sm:px-8"
+                                    className="absolute inset-x-0 flex h-84 flex-col items-center justify-center rounded-2xl border border-[#A14DFF] bg-white px-4 text-center shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-[transform,filter,opacity] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] sm:h-56 sm:px-8"
                                     style={{
                                         top: "50%",
                                         transform: `translateY(calc(-50% + ${offset * STEP_SIZE}px)) scale(${isActive ? 1 : 0.95})`,
-                                        filter: isActive ? "blur(0px)" : isVisible ? "blur(2px)" : "blur(8px)",
+                                        filter: isActive ? "blur(0px)" : isVisible ? "blur(1px)" : "blur(2px)",
                                         opacity: isVisible ? (isActive ? 1 : 0.72) : 0,
                                         zIndex: isActive ? 20 : isVisible ? 10 : 0,
                                         pointerEvents: isVisible ? "auto" : "none",
                                     }}
                                 >
                                     <Icon className="h-5 w-5 text-[#2c2c2c]" strokeWidth={1.8} />
-                                    <p className="mt-4 text-2xl text-[#2c2c2c]">{item.step}</p>
-                                    <h3 className="mt-3 text-4xl font-bold leading-tight text-black md:text-5xl">{item.title}</h3>
-                                    <p className="mt-3 max-w-4xl text-2xl leading-snug text-[#1f1f1f]">{item.description}</p>
+                                    <p className="mt-3 text-lg text-[#2c2c2c] sm:text-2xl">{item.step}</p>
+                                    <h3 className="mt-3 text-xl font-bold leading-tight text-black sm:text-3xl md:text-4xl">{item.title}</h3>
+                                    <p className="mt-3 max-w-4xl text-sm leading-relaxed text-[#1f1f1f] sm:text-xl sm:leading-snug">{item.description}</p>
                                 </article>
                             );
                         })}
