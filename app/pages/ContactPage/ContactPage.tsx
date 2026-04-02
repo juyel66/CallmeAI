@@ -4,10 +4,10 @@ import Link from "next/link";
 
 const ContactPage = () => {
   return (
-    <section className="w-full min-h-screen bg-[#f3f3f3]">
+    <section className="w-full min-h-screen ">
 
       {/* 🔥 HEADER */}
-      <div className="w-full bg-gradient-to-r from-[#a855f7] via-[#c084fc] to-[#e9d5ff] py-16 text-center text-white">
+      <div className="w-full bg-gradient-to-r from-[#a855f7] via-[#c084fc] to-[#e9d5ff] py-16 text-center text-white ">
         <h2 className="text-3xl md:text-4xl font-bold">Contact Us</h2>
         <p className="mt-3 text-sm md:text-base opacity-90">
           Tell us about your team and we&apos;ll follow up. Book a demo to hear the AI in action.
@@ -15,10 +15,10 @@ const ContactPage = () => {
       </div>
 
       {/* 🔥 MAIN CONTENT */}
-      <div className="relative -mt-10 px-4 max-w-6xl mx-auto grid lg:grid-cols-2 gap-6">
+      <div className="relative -mt-10  px-4 container mx-auto grid lg:grid-cols-2 gap-6">
 
        
-        <div className="rounded-2xl border border-[#c4b5fd] bg-white p-6 shadow-md">
+        <div className="rounded-2xl border border-[#c4b5fd] bg-white p-6 shadow-md mb-20">
 
           <h3 className="text-2xl font-semibold text-black mb-6">
             Send a message
@@ -74,9 +74,21 @@ const ContactPage = () => {
             </div>
 
             {/* BUTTON */}
-            <button className="mt-2 rounded-lg bg-[#7F20FF] px-6 py-2.5 text-white text-sm font-medium hover:bg-[#6F14F1]">
-              Submit →
-            </button>
+                     <button className="mt-2 rounded-lg bg-[#7F20FF] px-6 py-2.5 text-white text-sm font-medium hover:bg-[#6F14F1] flex items-center gap-2">
+  Submit
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M5 12h14M12 5l7 7-7 7" />
+  </svg>
+</button>
 
           </form>
         </div>
@@ -98,7 +110,7 @@ const ContactPage = () => {
           </div>
 
           {/* COMPANY */}
-          <div className="ml-6">
+          <div className="ml-6 md:mb-0 mb-10">
             <h4 className="text-2xl font-semibold text-black">Company</h4>
 
             <div className="mt-3 text-sm text-gray-700 space-y-1">
