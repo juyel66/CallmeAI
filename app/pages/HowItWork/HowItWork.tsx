@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Bell, CircleAlert, Database, Headset, MessagesSquare, PhoneCall } from "lucide-react";
+import Link from "next/link";
 
 const howItWorksData = [
     {
@@ -123,12 +124,25 @@ export default function HowItWork() {
             <div className="container mx-auto grid grid-cols-1 gap-5 px-4 sm:px-6 lg:grid-cols-[240px_1fr] lg:items-center lg:gap-14">
                 <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
                     <h2 className="text-3xl font-bold text-black sm:text-4xl md:text-5xl lg:whitespace-nowrap">How It Works</h2>
-                    <button
-                        type="button"
-                        className="mt-4 self-center rounded-xl bg-[#8E00FF] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#6f14f1] sm:px-6 sm:py-3 lg:ml-13"
-                    >
-                        Book a demo <span aria-hidden="true">→</span>
-                    </button>
+               <Link href="/contact"
+  type="button"
+  className="mt-4 self-center rounded-xl bg-[#8E00FF] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#6f14f1] sm:px-6 sm:py-3 lg:ml-13 flex items-center justify-center gap-2"
+>
+  Book a demo
+  <svg
+    width="17"
+    height="17"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="ml-1"
+  >
+    <path d="M5 12h14M12 5l7 7-7 7" />
+  </svg>
+</Link>
                 </div>
 
                 <div className="w-full rounded-3xl bg-white/70 p-2 sm:p-3 lg:max-w-5xl lg:justify-self-center">
