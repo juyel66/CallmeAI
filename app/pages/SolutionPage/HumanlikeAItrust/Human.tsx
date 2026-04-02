@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import humanImage from "../../../../public/images/Rectangle 7 (1).svg";
+import humanImage from "../../../../public/images/Rectangle 7 (3).svg";
 
 const features = [
   {
@@ -55,7 +55,7 @@ const Human = () => {
             {features.map((item, index) => (
               <div
                 key={index}
-                className="rounded-xl border border-[#c4b5fd] bg-white/70 backdrop-blur px-5 py-4 shadow-sm"
+                className="rounded-xl border border-[#8E00FF] bg-white/70 backdrop-blur px-5 py-4 shadow-sm"
               >
                 <h3 className="font-semibold text-black">
                   {item.title}
@@ -69,7 +69,7 @@ const Human = () => {
 
           {/* RIGHT IMAGE CARD */}
           <div className="flex items-center justify-center lg:self-center">
-            <div className="relative md:mr-26  w-full max-w-lg rounded-2xl border border-gray-300 bg-white p-6 shadow-md">
+            <div className="relative md:mr-26   w-full max-w-lg rounded-2xl border border-[#8E00FF] bg-white p-6 ">
 
               {/* DEMO IMAGE (you can replace later) */}
               <Image
@@ -89,9 +89,7 @@ const Human = () => {
                 Are you available for a call tomorrow at 10 AM?
               </div>
 
-              <div className="absolute bottom-6 right-6 bg-white border text-xs px-3 py-2 rounded-lg shadow">
-                Yes, that works for me. Thank you!
-              </div>
+            
 
             </div>
           </div>
