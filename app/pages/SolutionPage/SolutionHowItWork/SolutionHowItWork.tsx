@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -196,30 +197,45 @@ const SolutionHowItWork = () => {
   return (
     <section
       ref={sectionRef}
-      className="w-full py-14 px-4 sm:px-6 lg:px-8 bg-linear-to-r from-[#a855f7] via-[#c084fc] to-[#e9d5ff]"
+      className="w-full px-4 py-12 sm:px-6 sm:py-14 lg:px-8 bg-linear-to-r from-[#a855f7] via-[#c084fc] to-[#e9d5ff]"
     >
-      <div className="container mx-auto grid lg:grid-cols-[1fr_2fr] gap-2 items-start">
+      <div className="container mx-auto grid items-start gap-10 lg:grid-cols-[1fr_2fr] lg:gap-2">
 
         {/* LEFT SIDE (CENTER STICKY) */}
-        <div className="h-140 flex items-center justify-center">
-          <div className="text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-black">
+        <div className="flex items-center justify-center lg:h-140">
+          <div className="text-center max-w-xl lg:max-w-none">
+            <h2 className="text-3xl font-bold text-black sm:text-4xl lg:text-5xl">
               How It Works
             </h2>
 
-            <button className="mt-6 rounded-lg bg-[#8E00FF] px-6 py-3 text-white font-medium shadow-md hover:bg-[#6F14F1] transition">
-              Book a demo →
-            </button>
+   <Link
+  href="/contact"
+    className="mx-auto mt-4 flex w-40 items-center justify-center gap-2 rounded-xl bg-[#8E00FF] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#6f14f1] sm:mt-5 sm:px-6 sm:py-3"
+>
+  Book a demo
+  <svg
+    width="17"
+    height="17"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M5 12h14M12 5l7 7-7 7" />
+  </svg>
+</Link>
           </div>
         </div>
 
         {/* RIGHT SIDE HORIZONTAL CARDS */}
-        <div className="relative">
+        <div className="relative hidden lg:block">
           <div className="absolute left-6 top-0 h-full border-l-2 border-dashed border-[#9333EA]/60" />
 
           <div
             ref={cardsRailRef}
-            className="relative h-140 overflow-hidden pr-2 cursor-grab active:cursor-grabbing select-none"
+            className="relative h-140 overflow-hidden pr-2 select-none cursor-grab active:cursor-grabbing"
           >
             <div ref={cardsTrackRef} className="flex flex-col gap-6 pb-12 will-change-transform">
               {data.map((item, index) => (
@@ -234,7 +250,7 @@ const SolutionHowItWork = () => {
                     }`}
                   />
 
-                  <div className="min-h-[160px]  rounded-xl border border-[#BEBEBE] bg-[#ECECEC] p-6 text-start shadow-sm">
+                  <div className="min-h-40  rounded-xl border border-[#BEBEBE] bg-[#ECECEC] p-6 text-start shadow-sm">
                   <h3 className="text-xl mt-5 font-semibold text-black">
                     {item.title}
                   </h3>
@@ -246,8 +262,26 @@ const SolutionHowItWork = () => {
               ))}
             </div>
           </div>
+        </div>
 
-      
+        {/* MOBILE / TABLET STACK */}
+        <div className="grid gap-4 lg:hidden">
+          {data.map((item, index) => (
+            <div
+              key={index}
+              className="rounded-xl border border-[#BEBEBE] bg-[#ECECEC] p-5 text-left shadow-sm"
+            >
+              <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#8A2BE2] text-sm font-semibold text-white">
+                {index + 1}
+              </div>
+              <h3 className="text-lg font-semibold text-black sm:text-xl">
+                {item.title}
+              </h3>
+              <p className="mt-3 text-sm leading-6 text-gray-600 sm:text-base">
+                {item.desc}
+              </p>
+            </div>
+          ))}
         </div>
 
       </div>
