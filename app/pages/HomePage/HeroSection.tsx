@@ -125,7 +125,7 @@ const HeroSection = () => {
   }, [animatedPhrases.length, phraseIndex]);
 
   return (
-    <section className="relative flex min-h-svh w-full items-center justify-center overflow-hidden px-4 py-10 sm:min-h-[85vh] sm:px-6 sm:py-14 lg:min-h-[90vh] lg:py-16">
+    <section className="relative flex min-h-svh w-full items-center justify-center overflow-hidden px-4 py-10 sm:min-h-[85vh] sm:px-6 sm:py-14 lg:min-h-[89vh] lg:py-16">
 
       <Image
         src={heroSections}
@@ -148,7 +148,8 @@ const HeroSection = () => {
           <h1 className="mb-4 text-2xl font-bold leading-tight text-white sm:text-4xl md:text-5xl">
             <span className="flex flex-col items-center justify-center gap-y-2 text-center">
               <span className="inline-flex flex-wrap items-baseline justify-center gap-x-1 gap-y-1">
-                <span className="whitespace-nowrap">Automated</span>
+                <span className="whitespace-nowrap md:mr-2">Automated </span>
+
                 <span
                   className="relative inline-flex h-[1.2em] w-fit overflow-hidden align-bottom transition-[width] duration-300 ease-out"
                   style={{ width: phraseWidth ? `${phraseWidth}px` : "auto" }}
