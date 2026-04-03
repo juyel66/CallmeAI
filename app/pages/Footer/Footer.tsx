@@ -10,13 +10,15 @@ const Footer = () => {
                 <div className="grid grid-cols-1 gap-12 md:grid-cols-4">
                     {/* Logo & Tagline */}
                     <div className="col-span-1">
-                        <Image
+                        <a href="/" className=" inline-block">
+                            <Image
                             src="/images/image 1.svg"
                             alt="CallmeAI Logo"
                             width={140}
                             height={48}
                             className="mb-6 h-auto w-auto"
                         />
+                        </a>
                         <p className="text-[14px] leading-[22px] text-[#8B95A5]">
                             AI phone agents for lead contact, follow-up, and calendar bookings.
                         </p>
