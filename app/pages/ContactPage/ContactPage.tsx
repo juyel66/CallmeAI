@@ -74,7 +74,7 @@ const ContactPage = () => {
             </div>
 
             {/* BUTTON */}
-                     <button className="mt-2 rounded-lg bg-[#7F20FF] px-6 py-2.5 text-white text-sm font-medium hover:bg-[#6F14F1] flex items-center gap-2">
+                     <button className="mt-2 rounded-lg cursor-pointer bg-[#7F20FF] px-6 py-2.5 text-white text-sm font-medium hover:bg-[#6F14F1] flex items-center gap-2">
   Submit
   <svg
     width="16"
