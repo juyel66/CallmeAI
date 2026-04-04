@@ -224,13 +224,13 @@ export default function AIJustGot() {
                     {cards.map((card, index) => (
                       <div
                         key={index}
-                        className={`absolute left-1/2 top-1/2 h-100 w-70 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl transition-all duration-500 select-none ${
+                        className={`absolute left-1/2 top-1/2 h-100 md:w-75 w-70 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl transition-all duration-500 select-none ${
                           card.state.isActive ? "shadow-2xl shadow-purple-500/20 ring-2 ring-purple-400/20" : "shadow-lg"
                         }`}
                         style={card.state.style}
                         onContextMenu={(e) => e.preventDefault()}
                       >
-                        <div className="relative flex h-full w-full flex-col rounded-2xl border border-purple-200 bg-white p-3.5 pointer-events-none">
+                        <div className="relative flex h-full w-full flex-col rounded-2xl border border-purple-400 bg-white p-3.5 pointer-events-none">
                           <Image
                             src={card.image}
                             alt={card.title}
