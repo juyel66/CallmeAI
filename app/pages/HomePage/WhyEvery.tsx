@@ -61,9 +61,9 @@ const WhyEvery = () => {
             return (
               <div
                 key={index}
-                className="flex items-center gap-3 p-4 rounded-xl border border-gray-200 bg-gray-100 shadow-sm hover:shadow-md transition"
+                className="flex items-center gap-3 p-4 rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition"
               >
-                <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white ">
+                <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 ">
                   <Image src={item.customIcon} alt="feature icon" width={20} height={20} />
                 </div>
                 <p className="text-sm text-gray-700 text-left">{item.text}</p>
