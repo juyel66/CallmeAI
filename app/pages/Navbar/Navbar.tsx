@@ -30,7 +30,7 @@ const Navbar = () => {
                         <Image
                             src={logoImage}
                             alt="logo"
-                            width={120}
+                            width={140}
                             height={40}
                         />
                     </Link>
