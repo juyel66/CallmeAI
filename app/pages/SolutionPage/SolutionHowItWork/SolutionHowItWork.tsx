@@ -230,7 +230,7 @@ const SolutionHowItWork = () => {
         </div>
 
         {/* RIGHT SIDE HORIZONTAL CARDS */}
-        <div className="relative hidden lg:block">
+        <div className="relative hidden md:block">
           <div className="absolute left-6 top-0 h-full border-l-2 border-dashed border-[#9333EA]/60" />
 
           <div
@@ -238,46 +238,53 @@ const SolutionHowItWork = () => {
             className="relative h-140 overflow-hidden pr-2 select-none cursor-grab active:cursor-grabbing"
           >
             <div ref={cardsTrackRef} className="flex flex-col gap-6 pb-12 will-change-transform">
-              {data.map((item, index) => (
-                <div
-                  key={index}
-                  className="solution-card relative pl-14"
-                >
-                  <div
-                    onClick={() => HandleVerticaleLine(index)}
-                    className={`absolute top-1/2 -translate-y-1/2 rounded-full bg-[#8A2BE2] transition-all duration-200 ${
-                      activeIndex === index ? "left-1.5 h-8 w-8" : "left-3 h-6 w-6"
-                    }`}
-                  />
+              {data.map((item, index) => {
+                const isActive = activeIndex === index;
 
-                  <div className="min-h-40  rounded-xl border border-[#BEBEBE] bg-[#ECECEC] p-6 text-start shadow-sm">
-                  <h3 className="text-xl mt-5 font-semibold text-black">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 text-base text-gray-600">
-                    {item.desc}
-                  </p>
-                </div>
-              </div>
-              ))}
+                return (
+                  <div key={index} className="solution-card relative pl-14">
+                    <div
+                      onClick={() => HandleVerticaleLine(index)}
+                      className={`absolute top-1/2 -translate-y-1/2 rounded-full bg-[#8A2BE2] transition-all duration-200 ${
+                        isActive ? "left-1.5 h-8 w-8" : "left-3 h-6 w-6"
+                      }`}
+                    />
+
+                    <div
+                      className={`min-h-40 rounded-xl border p-6 text-start shadow-sm transition-all duration-300 ${
+                        isActive
+                          ? "border-white bg-white shadow-[0_14px_30px_rgba(0,0,0,0.10)]"
+                          : "border-[#D7D7D7] bg-[#F2F2F2]"
+                      }`}
+                    >
+                      <h3 className={`mt-5 text-xl font-semibold ${isActive ? "text-black" : "text-gray-700"}`}>
+                        {item.title}
+                      </h3>
+                      <p className={`mt-3 text-base ${isActive ? "text-gray-700" : "text-gray-500"}`}>
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
 
         {/* MOBILE / TABLET STACK */}
-        <div className="grid gap-4 lg:hidden">
+        <div className="grid gap-4 md:hidden">
           {data.map((item, index) => (
             <div
               key={index}
-              className="rounded-xl border border-[#BEBEBE] bg-[#ECECEC] p-5 text-left shadow-sm"
+              className="rounded-xl border border-[#D7D7D7] bg-[#F2F2F2] p-5 text-left shadow-sm"
             >
               <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#8A2BE2] text-sm font-semibold text-white">
                 {index + 1}
               </div>
-              <h3 className="text-lg font-semibold text-black sm:text-xl">
+              <h3 className="text-lg font-semibold text-gray-700 sm:text-xl">
                 {item.title}
               </h3>
-              <p className="mt-3 text-sm leading-6 text-gray-600 sm:text-base">
+              <p className="mt-3 text-sm leading-6 text-gray-500 sm:text-base">
                 {item.desc}
               </p>
             </div>
