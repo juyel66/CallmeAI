@@ -66,7 +66,7 @@ const ContactPage = () => {
             {/* CHECKBOX */}
             <div className="flex items-start gap-2 border rounded-lg p-3 text-xs text-gray-600">
               <input type="checkbox" className="mt-1 accent-[#7F20FF]" />
-              <p>
+              <p className="text-[15px]">
                 I agree to receive SMS messages from CallmeAI related to my request for a demo or call, including call confirmations, follow-up messages, and support communications. Message frequency may vary. Message and data rates may apply. Reply STOP to opt out or HELP for help. See our{" "}
                 <Link href="/privacy-policy" className="text-[#7F20FF] underline cursor-pointer">Privacy Policy</Link> and{" "}
                 <Link href="/terms" className="text-[#7F20FF] underline cursor-pointer">Terms & Conditions</Link>
