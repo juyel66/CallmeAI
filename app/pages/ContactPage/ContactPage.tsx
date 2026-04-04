@@ -18,16 +18,16 @@ const ContactPage = () => {
       <div className="relative -mt-10  px-4 container mx-auto grid lg:grid-cols-2 gap-6">
 
        
-        <div className="rounded-2xl border border-[#c4b5fd] bg-white p-6 shadow-md mb-20">
+        <div className="rounded-2xl border  border-[#c4b5fd] bg-white p-6 shadow-md mb-20">
 
           <h3 className="text-2xl font-semibold text-black mb-6">
             Send a message
           </h3>
 
-          <form className="space-y-4">
+          <form className="space-y-4 text-black">
 
             {/* NAME */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-black">
               <div>
                 <label className="text-sm font-medium">First name</label>
                 <input className="mt-1 w-full border rounded-md px-3 py-2 text-sm" placeholder="Enter First name" />
