@@ -208,6 +208,16 @@ const SolutionHowItWork = () => {
               How It Works
             </h2>
 
+              <p className="mt-3 max-w-xl text-[15px] leading-7">
+    <span className="inline-block whitespace-nowrap">Optimize your sales process with,</span>
+    <br />
+    <span className="inline-block whitespace-nowrap">automated calling, SMS, and AI. Reach,</span>
+    <br />
+    <span className="inline-block whitespace-nowrap">more leads, book more appointments, and,</span>
+    <br />
+    <span className="inline-block whitespace-nowrap">close more deals.</span>
+  </p>
+
    <Link
   href="/contact"
     className="mx-auto mt-4 flex w-40 items-center justify-center gap-2 rounded-xl bg-[#8E00FF] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#6f14f1] sm:mt-5 sm:px-6 sm:py-3"
