@@ -38,7 +38,7 @@ const items = [
 const WhyEvery = () => {
 
   return (
-    <section className="relative w-full overflow-hidden bg-white py-20">
+    <section className="relative w-full  p-3 overflow-hidden bg-white py-20">
       <div className="pointer-events-none absolute -bottom-28 -left-24 h-96 w-96 rounded-full bg-linear-to-tr from-[#7F20FF]/16 via-[#7F20FF]/8 to-transparent blur-3xl" />
 
       <div className="container mx-auto text-center">
