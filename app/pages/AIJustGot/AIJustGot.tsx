@@ -9,7 +9,7 @@ import leadImage2 from "../../../public/images/Rectangle 14.svg";
 import leadImage3 from "../../../public/images/Rectangle 14 (2).svg";
 import leadImage4 from "../../../public/images/Rectangle 14 (1).svg";
 
-const CARD_OFFSET = 340;
+const CARD_OFFSET = 303;
 
 export default function AIJustGot() {
   const [current, setCurrent] = useState(1);
@@ -224,13 +224,13 @@ export default function AIJustGot() {
                     {cards.map((card, index) => (
                       <div
                         key={index}
-                        className={`absolute left-1/2 top-1/2 h-100 md:w-75 w-70 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl transition-all duration-500 select-none ${
-                          card.state.isActive ? "shadow-2xl shadow-purple-500/20 ring-2 ring-purple-400/20" : "shadow-lg"
+                        className={`absolute left-1/2 top-1/2 h-125 mt-10 md:w-75 w-70 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl transition-all duration-500 select-none ${
+                          card.state.isActive ? "shadow-2xl shadow-purple-500/20" : "shadow-lg"
                         }`}
                         style={card.state.style}
                         onContextMenu={(e) => e.preventDefault()}
                       >
-                        <div className="relative flex h-full w-full flex-col rounded-2xl border border-purple-400 bg-white p-3.5 pointer-events-none">
+                        <div className="relative flex h-full w-full flex-col rounded-2xl bg-white p-3.5">
                           <Image
                             src={card.image}
                             alt={card.title}
@@ -240,12 +240,23 @@ export default function AIJustGot() {
                           />
 
                           <div className="flex flex-1 flex-col px-1 pt-5">
-                            <h3 className="text-lg font-semibold leading-tight text-gray-900">
+                            <h3 className="text-2xl text-center font-semibold leading-tight text-gray-900">
                               {card.title}
                             </h3>
-                            <p className="mt-2 text-[17px] leading-relaxed text-gray-500">
+                            <p className="mt-2 text-[17px] text-center leading-relaxed text-gray-700">
                               {card.description}
                             </p>
+                            {card.state.isActive && (
+                              <div className="mt-6 flex items-center justify-center">
+                            <button
+  type="button"
+  className="group cursor-pointer relative inline-block px-1 text-[17px] font-medium text-black"
+>
+  Learn More
+  <span className="absolute left-0 bottom-0 h-[2px] w-full bg-purple-600 transition-all duration-200 group-hover:bottom-[2px]" />
+</button>
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -281,7 +292,7 @@ export default function AIJustGot() {
               type="button"
               onClick={() => setIsPlaying((prev) => !prev)}
               aria-label={isPlaying ? "Pause" : "Play"}
-              className="flex h-9 md:ml-0 ml-10 w-9 items-center justify-center rounded-full bg-white text-purple-600 shadow-md transition-all duration-300 hover:scale-110"
+              className="flex h-9 md:ml-0 ml-10 w-9 mt-15 items-center justify-center rounded-full bg-white text-purple-600 shadow-md transition-all duration-300 hover:scale-110"
             >
               {isPlaying ? (
                 <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
