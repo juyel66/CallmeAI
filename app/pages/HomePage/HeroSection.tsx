@@ -131,6 +131,7 @@ const HeroSection = () => {
         src={heroSections}
         alt="Hero Background"
         fill
+        quality={100}
         priority
         className="object-cover object-center"
         sizes="100vw"
