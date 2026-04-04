@@ -157,8 +157,7 @@ export default function HowItWork() {
                         onWheel={(e) => {
                             e.preventDefault();
                             e.stopPropagation();
-                            // Scroll up (negative deltaY) - cards go up
-                            // Scroll down (positive deltaY) - cards go down
+                          
                             triggerMove(e.deltaY);
                         }}
                         onMouseDown={(e) => {
@@ -170,8 +169,7 @@ export default function HowItWork() {
                             const deltaY = e.clientY - dragStartYRef.current;
                             if (Math.abs(deltaY) < MOVE_THRESHOLD) return;
                             
-                            // Drag up (negative deltaY) - cards go up
-                            // Drag down (positive deltaY) - cards go down
+                            
                             triggerMove(deltaY);
                             dragStartYRef.current = e.clientY;
                         }}
@@ -221,7 +219,7 @@ export default function HowItWork() {
                                         pointerEvents: isVisible ? "auto" : "none",
                                     }}
                                 >
-                                    <Icon className="h-5 w-5 text-[#2c2c2c]" strokeWidth={1.8} />
+                                    <Icon className="h-7 w-7 rounded-full bg-gray-200 p-1.5 text-[#2c2c2c] sm:h-8 sm:w-8" strokeWidth={1.8} />
                                     <p className="mt-3 text-lg text-[#2c2c2c] sm:text-2xl">{item.step}</p>
                                     <h3 className="mt-3 text-xl font-bold leading-tight text-black sm:text-3xl md:text-4xl">{item.title}</h3>
                                     <p className="mt-3 max-w-4xl text-sm leading-relaxed text-[#1f1f1f] sm:text-xl sm:leading-snug">{item.description}</p>
