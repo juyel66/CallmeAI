@@ -59,7 +59,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
-import heroSections from "../../../public/images/herosections.jpg"
+import heroSections from "../../../public/images/heroImage.svg"
 import Buttons from "@/app/Shared/Button/Buttons";
 
 const TRANSITION_DURATION = 1300;
