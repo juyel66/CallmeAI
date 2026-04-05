@@ -1,271 +1,116 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import {
-  Bell,
-  CircleAlert,
-  Database,
-  Headset,
-  MessagesSquare,
-  PhoneCall,
-} from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import imgHowItWorks from "../../../public/images/Rectangle 16.svg";
 
 const howItWorksData = [
   {
     id: 1,
-    icon: CircleAlert,
-    step: "Step 01",
-    title: "Leads Instantly Contacted",
+    title: "Appointment Booked On Calendar",
     description:
-      "Reach every new lead within seconds no delays, no lost opportunities.",
+      "Prequalified appointments are scheduled straight into your calendar",
   },
   {
     id: 2,
-    icon: MessagesSquare,
-    step: "Step 02",
     title: "Multi-Touch Follow-Up",
     description:
       "AI phone agent handles conversations professionally and filters out low-quality leads.",
   },
   {
     id: 3,
-    icon: Headset,
-    step: "Step 03",
-    title: "Qualified Calls Booked",
+    title: "Connected & Qualified",
     description:
-      "High-intent leads are routed to your calendar so your team only speaks with ready buyers.",
+      "AI phone agent handles conversations professionally and filters out low-quality leads.",
   },
   {
     id: 4,
-    icon: PhoneCall,
-    step: "Step 04",
-    title: "Instant Agent Handoff",
+    title: "Appointment Booked On Calendar",
     description:
-      "When prospects are ready, the conversation is handed to your sales team at the right moment.",
+      "Prequalified appointments are scheduled straight into your calendar",
   },
   {
     id: 5,
-    icon: Bell,
-    step: "Step 05",
-    title: "Real-Time Alerts",
+    title: "Call Summary Logged in CRM",
     description:
-      "Your team gets immediate notifications when qualified leads take high-intent actions.",
+      "Prospect details and conversation highlights delivered to your team before each appointment.",
   },
   {
     id: 6,
-    icon: Database,
-    step: "Step 06",
-    title: "CRM Auto Sync",
+    title: "Increased Sales Production",
     description:
-      "Call summaries, tags, and lead status are synced to CRM automatically without manual updates.",
+      "Boost sales efficiency and maximize revenue opportunities.",
   },
 ];
 
-const CARD_HEIGHT = 208;
-const CARD_GAP = 12;
-const STEP_SIZE = CARD_HEIGHT + CARD_GAP;
-const MOVE_THRESHOLD = 34;
-const MOVE_COOLDOWN = 280;
-
 export default function HowItWork() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const dragStartYRef = useRef<number | null>(null);
-  const lastTriggerRef = useRef(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const total = howItWorksData.length;
-
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % total);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + total) % total);
-  };
-
-  const triggerMove = (deltaY: number) => {
-    const now = Date.now();
-    if (now - lastTriggerRef.current < MOVE_COOLDOWN) return;
-
-    // Mouse up (negative deltaY) - cards go up.
-    if (deltaY < -MOVE_THRESHOLD) {
-      nextSlide();
-      lastTriggerRef.current = now;
-      return;
-    }
-
-    // Mouse down (positive deltaY) - cards go down.
-    if (deltaY > MOVE_THRESHOLD) {
-      prevSlide();
-      lastTriggerRef.current = now;
-    }
-  };
-
-  useEffect(() => {
-    if (isPaused) return;
-
-    const timerId = window.setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % total);
-    }, 2600);
-
-    return () => {
-      window.clearInterval(timerId);
-    };
-  }, [isPaused, total]);
-
-  // Prevent page scroll when interacting with the carousel
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const preventScroll = (e: WheelEvent) => {
-      e.preventDefault();
-    };
-
-    container.addEventListener("wheel", preventScroll, { passive: false });
-
-    return () => {
-      container.removeEventListener("wheel", preventScroll);
-    };
-  }, []);
-
   return (
     <section
-      className="w-full select-none py-10 sm:py-12 md:py-16"
-      onCopy={(e) => e.preventDefault()}
+      className="w-full py-10 sm:py-12 md:py-16"
+      style={{
+        background: "linear-gradient(90deg, #ffffff 0%, #f4e5ff 100%)",
+      }}
     >
-      <div className="container mx-auto grid grid-cols-1 gap-5 px-4 sm:px-6 lg:grid-cols-[360px_1fr] lg:items-center lg:gap-10">
-      <div className="flex flex-col items-center text-center">
-  <h2 className="text-3xl font-bold text-black sm:text-4xl md:text-5xl whitespace-nowrap">
-    How It Works
-  </h2>
+      <div className="container mx-auto flex flex-col items-center  lg:flex-row   lg:gap-12 lg:px-2">
+        
+        {/* IMAGE - 2/5 */}
+        <div className="w-full max-w-145 lg:w-[46%] lg:max-w-none">
+          <Image
+            src={imgHowItWorks}
+            alt="How It Works"
+            className="h-auto w-full"
+            width={680}
+            height={510}
+            priority
+          />
+        </div>
 
-  <p className="mt-3 max-w-xl text-[15px] leading-7">
-    <span className="inline-block whitespace-nowrap">Optimize your sales process with,</span>
-    <br />
-    <span className="inline-block whitespace-nowrap">automated calling, SMS, and AI. Reach,</span>
-    <br />
-    <span className="inline-block whitespace-nowrap">more leads, book more appointments, and,</span>
-    <br />
-    <span className="inline-block whitespace-nowrap">close more deals.</span>
-  </p>
+        {/* TEXT - 3/5 */}
+        <div className="w-full lg:w-[48%]">
+          <h2 className="text-center text-3xl font-bold text-black sm:text-4xl md:text-5xl lg:text-left">
+            How It Works
+          </h2>
 
-  <Link
-    href="/contact"
-    className="mt-5 inline-flex items-center justify-center gap-2 rounded-xl bg-[#8E00FF] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#6f14f1] sm:px-6 sm:py-3"
-  >
-    Book a demo
-    <svg
-      width="17"
-      height="17"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M5 12h14M12 5l7 7-7 7" />
-    </svg>
-  </Link>
-</div>
+          <div className="mt-6 space-y-4 sm:mt-8 sm:space-y-5">
+            {howItWorksData.map((item) => (
+              <article key={item.id} className="flex items-start gap-3 sm:gap-4">
+                <div className="flex h-15 w-15 shrink-0 items-center justify-center rounded-full bg-[#5B21B6] text-sm font-semibold text-white shadow-sm">
+                  {item.id}
+                </div>
 
-        <div className="w-full lg:max-w-4xl lg:justify-self-center">
-          <div
-            ref={containerRef}
-            className="relative h-88 cursor-grab overflow-hidden rounded-2xl touch-none active:cursor-grabbing sm:h-104 lg:h-160"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => {
-              setIsPaused(false);
-              dragStartYRef.current = null;
-            }}
-            onWheel={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-
-              triggerMove(e.deltaY);
-            }}
-            onMouseDown={(e) => {
-              dragStartYRef.current = e.clientY;
-            }}
-            onMouseMove={(e) => {
-              if (dragStartYRef.current === null) return;
-
-              const deltaY = e.clientY - dragStartYRef.current;
-              if (Math.abs(deltaY) < MOVE_THRESHOLD) return;
-
-              triggerMove(deltaY);
-              dragStartYRef.current = e.clientY;
-            }}
-            onMouseUp={() => {
-              dragStartYRef.current = null;
-            }}
-            onPointerDown={(e) => {
-              dragStartYRef.current = e.clientY;
-              e.currentTarget.setPointerCapture(e.pointerId);
-            }}
-            onPointerMove={(e) => {
-              if (dragStartYRef.current === null) return;
-
-              const deltaY = e.clientY - dragStartYRef.current;
-              if (Math.abs(deltaY) < MOVE_THRESHOLD) return;
-
-              // Touch drag - works the same way
-              triggerMove(deltaY);
-              dragStartYRef.current = e.clientY;
-            }}
-            onPointerUp={() => {
-              dragStartYRef.current = null;
-            }}
-            onPointerCancel={() => {
-              dragStartYRef.current = null;
-            }}
-          >
-            {howItWorksData.map((item, index) => {
-              let offset = index - currentIndex;
-              if (offset > total / 2) offset -= total;
-              if (offset < -total / 2) offset += total;
-
-              const isActive = offset === 0;
-              const isVisible = Math.abs(offset) <= 1;
-              const Icon = item.icon;
-
-              return (
-                <article
-                  key={item.id}
-                  className="absolute inset-x-0 flex h-80 flex-col items-center justify-center rounded-2xl border border-[#A14DFF] bg-white px-4 text-center shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-[transform,filter,opacity] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] sm:h-52 sm:px-7"
-                  style={{
-                    top: "50%",
-                    transform: `translateY(calc(-50% + ${offset * STEP_SIZE}px)) scale(${isActive ? 1 : 0.95})`,
-                    filter: isActive
-                      ? "blur(0px)"
-                      : isVisible
-                        ? "blur(1px)"
-                        : "blur(2px)",
-                    opacity: isVisible ? (isActive ? 1 : 0.72) : 0,
-                    zIndex: isActive ? 20 : isVisible ? 10 : 0,
-                    pointerEvents: isVisible ? "auto" : "none",
-                  }}
-                >
-                  <Icon
-                    className="h-7 w-7 rounded-full bg-gray-200 p-1.5 text-[#2c2c2c] sm:h-8 sm:w-8"
-                    strokeWidth={1.8}
-                  />
-                  <p className="mt-3 text-lg text-[#2c2c2c] sm:text-2xl">
-                    {item.step}
-                  </p>
-                  <h3 className="mt-3 text-lg font-bold leading-tight text-black sm:text-2xl md:text-3xl">
+                <div className="min-w-0">
+                  <h3 className="text-lg font-bold leading-tight text-black sm:text-xl">
                     {item.title}
                   </h3>
-                  <p className="mt-3 max-w-4xl text-sm leading-relaxed text-[#1f1f1f] sm:text-lg sm:leading-snug">
+                  <p className="mt-1 text-sm leading-6 text-[#5c5c5c] sm:text-[15px] sm:leading-7">
                     {item.description}
                   </p>
-                </article>
-              );
-            })}
+                </div>
+              </article>
+            ))}
           </div>
+          <div className="">
+
+          </div>
+
+          <Link
+            href="/contact"
+            className="mx-auto mt-6 flex w-fit items-center justify-center gap-2 rounded-xl bg-[#8E00FF] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#6f14f1] sm:mt-8 sm:px-6 sm:py-3 lg:mx-0"
+          >
+            Book a demo
+            <svg
+              width="17"
+              height="17"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </Link>
         </div>
       </div>
     </section>
