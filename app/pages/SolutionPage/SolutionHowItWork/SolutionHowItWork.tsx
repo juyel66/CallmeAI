@@ -199,7 +199,7 @@ const SolutionHowItWork = () => {
       ref={sectionRef}
       className="w-full px-4 py-12 sm:px-6 sm:py-14 lg:px-8 bg-linear-to-r from-[#a855f7] via-[#c084fc] to-[#e9d5ff]"
     >
-      <div className="container mx-auto grid items-start gap-10 lg:grid-cols-[1fr_2fr] lg:gap-2">
+      <div className="max-w-7xl mx-auto grid items-start gap-10 lg:grid-cols-[1fr_2fr] lg:gap-2">
 
         {/* LEFT SIDE (CENTER STICKY) */}
         <div className="flex items-center justify-center lg:h-140">
