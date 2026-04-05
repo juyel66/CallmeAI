@@ -16,7 +16,7 @@ const SolutionsHeroPages = () => {
                     </h1>
 
                     <p className="mt-5 max-w-prose text-sm leading-relaxed text-[#444] transition-all duration-300 sm:mt-6 sm:text-base md:text-lg">
-                        Optimize your sales process with automated Calling, SMS, and AI. Reach more leads, book more appointments, and close more deals.
+                        Optimize your sales process with automated calling, multi-layer follow up, and smart qualification. Reach more leads, book more appointments, and close more deals.
                     </p>
 
                     <Link href="/contact" className="
