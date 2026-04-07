@@ -16,7 +16,7 @@ const plans = [
     features: [
       "500 Minutes Included",
       "AI Appointment Setter (calls, qualifies, books).",
-      "Multi-Touch Follow-Up (calls, SMS, voicemail).",
+      
       "Smart Lead Qualification.",
       "Direct Calendar Booking.",
       "Local Phone Number.",
