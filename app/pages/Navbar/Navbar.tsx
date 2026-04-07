@@ -61,7 +61,7 @@ const Navbar = () => {
                         href="/contact"
                         className="hidden lg:inline-flex items-center rounded-full bg-gradient-to-r bg-[#8E00FF] px-6 py-3 text-white font-medium shadow-md hover:opacity-90 transition"
                     >
-                        Book a demo 
+                        Book a Call 
                     </Link>
 
                     {/* MOBILE HAMBURGER */}
@@ -126,7 +126,7 @@ const Navbar = () => {
                                 onClick={() => setIsMenuOpen(false)}
                                 className="mt-2 inline-flex justify-center rounded-full bg-[#8E00FF] px-5 py-3 text-white font-medium"
                             >
-                                Book a demo 
+                                Book a Call
                             </Link>
                         </ul>
                     </div>
