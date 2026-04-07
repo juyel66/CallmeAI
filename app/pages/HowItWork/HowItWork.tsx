@@ -97,7 +97,7 @@ export default function HowItWork() {
             href="/contact"
             className="mx-auto mt-6 flex w-fit items-center justify-center gap-2 rounded-xl bg-[#8E00FF] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#6f14f1] sm:mt-8 sm:px-6 sm:py-3 lg:mx-0"
           >
-            Book a demo
+            Book a Call
             <svg
               width="17"
               height="17"
