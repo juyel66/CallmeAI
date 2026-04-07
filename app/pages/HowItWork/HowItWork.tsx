@@ -74,7 +74,7 @@ export default function HowItWork() {
           <div className="mt-6 space-y-4 sm:mt-8 sm:space-y-5">
             {howItWorksData.map((item) => (
               <article key={item.id} className="flex items-start gap-3 sm:gap-4">
-                <div className="flex h-15 w-15 shrink-0 items-center justify-center rounded-full bg-[#623FF4] text-sm font-semibold text-white shadow-sm">
+                <div className="flex md:h-15 md:w-15 h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#623FF4] text-sm font-semibold text-white shadow-sm">
                   {item.id}
                 </div>
 
