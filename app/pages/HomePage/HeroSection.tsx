@@ -60,6 +60,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import heroSections from "../../../public/images/heroImage.svg"
+import heroSectionsSmallDevice from "../../../public/images/Rectangle 19.svg"
 import Buttons from "@/app/Shared/Button/Buttons";
 
 const TRANSITION_DURATION = 1300;
@@ -125,7 +126,17 @@ const HeroSection = () => {
   }, [animatedPhrases.length, phraseIndex]);
 
   return (
-    <section className="relative flex min-h-svh w-full items-center justify-center overflow-hidden px-4 py-10 sm:min-h-[85vh] sm:px-6 sm:py-14 lg:min-h-[89vh] lg:py-16">
+    <section className="relative flex min-h-[78svh] w-full items-center justify-center overflow-hidden px-4 py-8 sm:min-h-[85vh] sm:px-6 sm:py-14 lg:min-h-[89vh] lg:py-16">
+
+      <Image
+        src={heroSectionsSmallDevice}
+        alt="Hero Background Small Device"
+        fill
+        quality={100}
+        priority
+        className="object-cover object-bottom md:hidden"
+        sizes="100vw"
+      />
 
       <Image
         src={heroSections}
@@ -133,7 +144,7 @@ const HeroSection = () => {
         fill
         quality={100}
         priority
-        className="object-cover object-center"
+        className="hidden object-cover object-center md:block"
         sizes="100vw"
 
       />
