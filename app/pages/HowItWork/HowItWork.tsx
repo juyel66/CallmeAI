@@ -15,7 +15,7 @@ const howItWorksData = [
     id: 2,
     title: "Multi-Touch Follow-Up",
     description:
-      "AI phone agent handles conversations professionally and filters out low-quality leads.",
+      "Calls and SMS messages automatically keep leads engaged.",
   },
   {
     id: 3,
@@ -46,7 +46,7 @@ const howItWorksData = [
 export default function HowItWork() {
   return (
     <section
-      className="w-full py-10 sm:py-12 md:py-16"
+      className="w-full py-10 sm:py-12 md:py-16 "
       style={{
         background: "linear-gradient(90deg, #ffffff 0%, #f4e5ff 100%)",
       }}
@@ -66,7 +66,7 @@ export default function HowItWork() {
         </div>
 
         {/* TEXT - 3/5 */}
-        <div className="w-full lg:w-[48%]">
+        <div className="w-full lg:w-[48%] p-2">
           <h2 className="text-center text-3xl font-bold text-black sm:text-4xl md:text-5xl lg:text-left">
             How It Works
           </h2>
@@ -74,7 +74,7 @@ export default function HowItWork() {
           <div className="mt-6 space-y-4 sm:mt-8 sm:space-y-5">
             {howItWorksData.map((item) => (
               <article key={item.id} className="flex items-start gap-3 sm:gap-4">
-                <div className="flex h-15 w-15 shrink-0 items-center justify-center rounded-full bg-[#5B21B6] text-sm font-semibold text-white shadow-sm">
+                <div className="flex h-15 w-15 shrink-0 items-center justify-center rounded-full bg-[#623FF4] text-sm font-semibold text-white shadow-sm">
                   {item.id}
                 </div>
 
