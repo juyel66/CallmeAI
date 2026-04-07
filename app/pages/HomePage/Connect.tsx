@@ -38,7 +38,7 @@ const Connect = () => {
 
           {/* RIGHT IMAGE - Takes 2 columns */}
           <div className="lg:col-span-2 relative w-full flex justify-center transition-all duration-300">
-            <div className="relative h-[280px] sm:h-[320px] md:h-[380px] lg:h-[460px] w-full max-w-4xl">
+            <div className="relative h-[320px] sm:h-[370px] md:h-[430px] lg:h-[520px] w-full max-w-5xl">
               <Image
                 src={imageBanner}
                 alt="Flowchart"
