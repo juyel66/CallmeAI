@@ -97,7 +97,7 @@ const PricingCard = () => {
             <div
               key={index}
               className={`
-                relative rounded-2xl border-2 bg-white hover:scale-[1.01] hover:shadow-lg p-6 flex flex-col
+                relative rounded-2xl border-3 bg-white hover:scale-[1.01] hover:shadow-lg p-6 flex flex-col
                 ${plan.highlight ? "border-[#8E00FF] shadow-lg" : "border-gray-300"}
               `}
             >
