@@ -65,6 +65,7 @@ const SolutionHowItWork = () => {
       let dragStartY = 0;
       let dragStartOffset = 0;
       const focusRatio = 0;
+      const extraLift = 24;
 
       const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
 
@@ -72,8 +73,8 @@ const SolutionHowItWork = () => {
         const focusOffset = rail.clientHeight * focusRatio;
         const lastCardTop = cards.length ? cards[cards.length - 1].offsetTop : 0;
 
-        // Allow scrolling until the last card's top reaches the rail top.
-        maxOffset = Math.max(lastCardTop - focusOffset, 0);
+        // Allow a little extra upward travel so the last card can move slightly above the top.
+        maxOffset = Math.max(lastCardTop - focusOffset + extraLift, 0);
 
         // Keep initial viewport locked to the first three full cards.
         currentOffset = clamp(currentOffset, 0, maxOffset);
@@ -149,6 +150,20 @@ const SolutionHowItWork = () => {
 
         if (crossedIndex >= 0) {
           nextActiveIndex = crossedIndex;
+        }
+
+        const isAtBottom = currentOffset >= maxOffset - 1;
+        if (isAtBottom && cards.length) {
+          nextActiveIndex = cards.length - 1;
+
+          gsap.to(cards[cards.length - 1], {
+            x: 0,
+            scale: 1,
+            opacity: 1,
+            duration: 0.2,
+            ease: "power2.out",
+            overwrite: true,
+          });
         }
 
         setActiveIndex((prev) => (prev === nextActiveIndex ? prev : nextActiveIndex));
@@ -243,13 +258,13 @@ const SolutionHowItWork = () => {
                   const isActive = activeIndex === index;
 
                   return (
-                    <div key={`${item.title}-${index}`} className="solution-card relative pl-17">
+                    <div key={`${item.title}-${index}`} className="solution-card relative pl-13">
                       <button
                         type="button"
                         aria-label={`Select ${item.title}`}
                         onClick={() => HandleVerticaleLine(index)}
                         className={`absolute top-1/2 -translate-y-1/2 rounded-full bg-[#8A2BE2] transition-all duration-200 ${
-                          isActive ? "left-1.5 h-8 w-8" : "left-3 h-6 w-6"
+                          isActive ? "left-1.5 h-8 w-8 -ml-0.5" : "left-3 h-6  w-6"
                         }`}
                       />
 
