@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import humanImage from "../../../../public/images/Rectangle 7 (3).svg";
+import humanImage from "../../../../public/images/Rectangle 7 (5).svg";
 
 const features = [
   {
     title: "Natural Tone",
-    desc: "Speaks with natural cadence and inflection, making every conversation feel authentic",
+    desc: "Speaks with natural cadence and inflection, making every conversation feel authentic.",
   },
   {
     title: "Dynamic Conversations",
@@ -48,7 +48,7 @@ const Human = () => {
         </div>
 
         {/* CONTENT */}
-        <div className="mt-10 grid gap-6 items-start lg:grid-cols-2 lg:items-center lg:gap-8">
+        <div className="mt-10 grid items-start gap-5 lg:grid-cols-2 lg:items-center lg:gap-5">
 
           {/* LEFT FEATURES */}
           <div className="flex flex-col gap-4">
@@ -69,25 +69,18 @@ const Human = () => {
 
           {/* RIGHT IMAGE CARD */}
           <div className="flex items-center justify-center lg:self-center">
-            <div className="relative md:mr-26   w-full max-w-lg rounded-2xl border border-[#8E00FF] bg-white p-6 ">
+            <div className="relative md:mr-26 w-full max-w-xl rounded-2xl p-6 lg:max-w-2xl">
 
               {/* DEMO IMAGE (you can replace later) */}
               <Image
                 src={humanImage}
                 alt="AI conversation"
-                width={620}
-                height={380}
-                className="md:h-80 w-full  rounded-xl md:object-cover lg:h-96"
+                width={700}
+                height={430}
+                className="w-full rounded-xl"
               />
 
-              {/* CHAT BUBBLES (UI MOCK) */}
-              <div className="absolute top-6 left-6 bg-purple-500 text-white text-xs px-3 py-2 rounded-lg shadow">
-                Hi! I&apos;m calling to discuss your inquiry.
-              </div>
-
-              <div className="absolute top-20 left-10 bg-purple-400 text-white text-xs px-3 py-2 rounded-lg shadow">
-                Are you available for a call tomorrow at 10 AM?
-              </div>
+          
 
             
 
