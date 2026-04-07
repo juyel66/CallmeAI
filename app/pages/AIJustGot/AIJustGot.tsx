@@ -3,13 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
-import leadImage from "../../../public/images/Rectangle 13 (1).svg";
-import leadImage1 from "../../../public/images/Rectangle 15.svg";
-import leadImage2 from "../../../public/images/Rectangle 14.svg";
-import leadImage3 from "../../../public/images/Rectangle 14 (2).svg";
-import leadImage4 from "../../../public/images/Rectangle 14 (1).svg";
+import dynamic from "../../../public/images/Dynamic.svg";
+import consistent from "../../../public/images/consistent.svg";
+import empetheric from "../../../public/images/empethetic.svg";
+import nature from "../../../public/images/nature.svg";
+import personalized from "../../../public/images/personalized.svg";
 
-const CARD_OFFSET = 303;
+const CARD_OFFSET = 330;
 
 export default function AIJustGot() {
   const [current, setCurrent] = useState(1);
@@ -134,7 +134,7 @@ export default function AIJustGot() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen overflow-hidden   bg-gradient-to-br from-[#c4a1ff] via-[#f3e8ff] to-[#fbcfe8] px-4 py-16 sm:px-6 lg:px-8 lg:py-24"
+      className="relative min-h-screen overflow-hidden   bg-linear-to-br from-[#c4a1ff] via-[#f3e8ff] to-[#fbcfe8] px-4 py-16 sm:px-6 lg:px-8 lg:py-24"
     >
       {/* Simple Background */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(139,92,246,0.08),transparent_50%)]" />
@@ -173,7 +173,7 @@ export default function AIJustGot() {
 
           {/* Main Slider Container */}
           <div
-            className="relative mx-auto h-125 w-full cursor-grab overflow-visible active:cursor-grabbing md:h-135"
+            className="relative mx-auto h-130 w-full cursor-grab overflow-visible active:cursor-grabbing md:h-140"
             onMouseLeave={onPointerLeave}
             onPointerDown={onPointerDown}
             onPointerUp={onPointerUp}
@@ -189,34 +189,35 @@ export default function AIJustGot() {
                 const cards = [
                   {
                     state: card1,
-                    image: leadImage,
-                    title: "Leads Instantly Contacted",
-                    description: "Slow outbound — leads cool off or move on to competitors"
+                    image: nature,
+                    title: "Natural Conversations",
+                    description: "Speaks fluidly and adapts to the flow of every call."
                   },
                   {
                     state: card2,
-                    image: leadImage1,
+                    image: empetheric,
                     title: "Empathetic Objection Handling",
                     description: "Responds thoughtfully to questions and concerns."
                   },
                   {
                     state: card3,
-                    image: leadImage2,
+                    image: dynamic,
                     title: "Dynamic Engagement",
                     description: "Every call is unique — AI adjusts tone, pace, and messaging in real-time."
                   },
-                  {
+                   {
                     state: card4,
-                    image: leadImage3,
-                    title: "Consistent Quality",
-                    description: "Maintains professionalism and high performance on every call, 24/7."
+                    image: personalized,
+                    title: "Personalized Touch",
+                    description: "Uses lead data to tailor interactions and build rapport."
                   },
                   {
                     state: card5,
-                    image: leadImage4,
-                    title: "Personalized Touch",
-                    description: "Uses lead data to tailor interactions and build rapport."
-                  }
+                    image: consistent,
+                    title: "Consistent Quality",
+                    description: "Maintains professionalism and high performance on every call, 24/7."
+                  },
+                 
                 ];
 
                 return (
@@ -224,7 +225,7 @@ export default function AIJustGot() {
                     {cards.map((card, index) => (
                       <div
                         key={index}
-                        className={`absolute left-1/2 top-1/2 h-125 mt-10 md:w-75 w-70 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl transition-all duration-500 select-none ${
+                        className={`absolute left-1/2 top-1/2 h-130 mt-10 md:w-80 w-74 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl transition-all duration-500 select-none ${
                           card.state.isActive ? "shadow-2xl shadow-purple-500/20" : "shadow-lg"
                         }`}
                         style={card.state.style}
@@ -234,29 +235,18 @@ export default function AIJustGot() {
                           <Image
                             src={card.image}
                             alt={card.title}
-                            className="mt-2 h-60 w-full rounded-2xl object-cover"
+                            className="mt-2 h-68 w-full rounded-2xl object-cover"
                             width={400}
                             height={560}
                           />
 
-                          <div className="flex flex-1 flex-col px-1 pt-5">
-                            <h3 className="text-2xl text-center font-semibold leading-tight text-gray-900">
+                          <div className="flex flex-1 flex-col px-1 pt-6">
+                            <h3 className="text-[1.75rem] text-center font-semibold leading-tight text-gray-900">
                               {card.title}
                             </h3>
-                            <p className="mt-2 text-[17px] text-center leading-relaxed text-gray-700">
+                            <p className="mt-3 text-[19px] text-center leading-relaxed text-gray-700">
                               {card.description}
                             </p>
-                            {card.state.isActive && (
-                              <div className="mt-6 flex items-center justify-center">
-                            <button
-  type="button"
-  className="group cursor-pointer relative inline-block px-1 text-[17px] font-medium text-black"
->
-  Learn More
-  <span className="absolute left-0 bottom-0 h-[2px] w-full bg-purple-600 transition-all duration-200 group-hover:bottom-[2px]" />
-</button>
-                              </div>
-                            )}
                           </div>
                         </div>
                       </div>
