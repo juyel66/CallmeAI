@@ -43,11 +43,10 @@ const data = [
 
 
 const SolutionHowItWork = () => {
-  const initialActiveIndex = 0;
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsRailRef = useRef<HTMLDivElement>(null);
   const cardsTrackRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(initialActiveIndex);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   useEffect(() => {
     if (!sectionRef.current || !cardsRailRef.current) return;
@@ -65,7 +64,6 @@ const SolutionHowItWork = () => {
       let dragStartY = 0;
       let dragStartOffset = 0;
       const focusRatio = 0;
-      const extraLift = 24;
 
       const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
 
@@ -73,8 +71,8 @@ const SolutionHowItWork = () => {
         const focusOffset = rail.clientHeight * focusRatio;
         const lastCardTop = cards.length ? cards[cards.length - 1].offsetTop : 0;
 
-        // Allow a little extra upward travel so the last card can move slightly above the top.
-        maxOffset = Math.max(lastCardTop - focusOffset + extraLift, 0);
+        // Allow scrolling until the last card's top reaches the rail top.
+        maxOffset = Math.max(lastCardTop - focusOffset, 0);
 
         // Keep initial viewport locked to the first three full cards.
         currentOffset = clamp(currentOffset, 0, maxOffset);
@@ -121,55 +119,16 @@ const SolutionHowItWork = () => {
         }
       );
 
-      const animateCardsByScroll = () => {
-        const railRect = rail.getBoundingClientRect();
-        const focusLine = railRect.top + railRect.height * focusRatio;
-        let nextActiveIndex = 0;
-        let crossedIndex = -1;
-
-        cards.forEach((card, index) => {
-          const rect = card.getBoundingClientRect();
-          const cardTop = rect.top;
-          const distance = Math.abs(cardTop - focusLine);
-          const normalized = Math.min(distance / (railRect.height / 2), 1);
-
-          // Activate the last card whose top edge has reached the focus line.
-          if (cardTop <= focusLine) {
-            crossedIndex = index;
-          }
-
-          gsap.to(card, {
-            x: normalized * 16,
-            scale: 1 - normalized * 0.08,
-            opacity: 1 - normalized * 0.35,
-            duration: 0.35,
-            ease: "power2.out",
-            overwrite: true,
-          });
-        });
-
-        if (crossedIndex >= 0) {
-          nextActiveIndex = crossedIndex;
-        }
-
-        const isAtBottom = currentOffset >= maxOffset - 1;
-        if (isAtBottom && cards.length) {
-          nextActiveIndex = cards.length - 1;
-
-          gsap.to(cards[cards.length - 1], {
-            x: 0,
-            scale: 1,
-            opacity: 1,
-            duration: 0.2,
-            ease: "power2.out",
-            overwrite: true,
-          });
-        }
-
-        setActiveIndex((prev) => (prev === nextActiveIndex ? prev : nextActiveIndex));
-      };
+      const animateCardsByScroll = () => {};
 
       const onWheel = (event: WheelEvent) => {
+        const scrollingDown = event.deltaY > 0;
+        const scrollingUp = event.deltaY < 0;
+
+        if ((scrollingDown && currentOffset >= maxOffset) || (scrollingUp && currentOffset <= 0)) {
+          return;
+        }
+
         event.preventDefault();
         setOffset(currentOffset + event.deltaY, true);
       };
@@ -220,10 +179,6 @@ const SolutionHowItWork = () => {
     return () => ctx.revert();
   }, []);
 
-  const HandleVerticaleLine = (index: number) => {
-    setActiveIndex(index);
-  };
-
   return (
     <section
       ref={sectionRef}
@@ -243,7 +198,7 @@ const SolutionHowItWork = () => {
 
         <div className="min-w-0">
           <h2 className="text-center text-3xl font-bold text-black sm:text-4xl lg:text-[3rem]">
-            How It Work
+            Your New Sales Process
           </h2>
 
           <div className="relative mt-8 hidden md:block">
@@ -258,11 +213,14 @@ const SolutionHowItWork = () => {
                   const isActive = activeIndex === index;
 
                   return (
-                    <div key={`${item.title}-${index}`} className="solution-card relative pl-13">
+                    <div
+                      key={`${item.title}-${index}`}
+                      className="solution-card relative pl-13"
+                      onMouseEnter={() => setActiveIndex(index)}
+                      onMouseLeave={() => setActiveIndex(null)}
+                    >
                       <button
                         type="button"
-                        aria-label={`Select ${item.title}`}
-                        onClick={() => HandleVerticaleLine(index)}
                         className={`absolute top-1/2 -translate-y-1/2 rounded-full bg-[#8A2BE2] transition-all duration-200 ${
                           isActive ? "left-1.5 h-8 w-8 -ml-0.5" : "left-3 h-6  w-6"
                         }`}
