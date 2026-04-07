@@ -55,8 +55,49 @@ const SolutionHowItWork = () => {
     const ctx = gsap.context(() => {
       const cards = gsap.utils.toArray<HTMLElement>(".solution-card");
       const rail = cardsRailRef.current;
+      const track = cardsTrackRef.current;
 
-      if (!rail) return;
+      if (!rail || !track) return;
+
+      let currentOffset = 0;
+      let maxOffset = 0;
+      let isDragging = false;
+      let dragStartY = 0;
+      let dragStartOffset = 0;
+      const focusRatio = 0;
+
+      const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
+
+      const refreshBounds = () => {
+        const focusOffset = rail.clientHeight * focusRatio;
+        const lastCardTop = cards.length ? cards[cards.length - 1].offsetTop : 0;
+
+        // Allow scrolling until the last card's top reaches the rail top.
+        maxOffset = Math.max(lastCardTop - focusOffset, 0);
+
+        // Keep initial viewport locked to the first three full cards.
+        currentOffset = clamp(currentOffset, 0, maxOffset);
+
+        gsap.set(track, { y: -currentOffset });
+      };
+
+      const setOffset = (nextOffset: number, animate = true) => {
+        currentOffset = clamp(nextOffset, 0, maxOffset);
+
+        if (animate) {
+          gsap.to(track, {
+            y: -currentOffset,
+            duration: 0.45,
+            ease: "power3.out",
+            overwrite: true,
+            onUpdate: animateCardsByScroll,
+          });
+          return;
+        }
+
+        gsap.set(track, { y: -currentOffset });
+        animateCardsByScroll();
+      };
 
       gsap.fromTo(
         cards,
@@ -81,40 +122,82 @@ const SolutionHowItWork = () => {
 
       const animateCardsByScroll = () => {
         const railRect = rail.getBoundingClientRect();
-        const firstCardHeight = cards[0]?.getBoundingClientRect().height ?? 136;
-        const activeAnchor = railRect.top + firstCardHeight / 2;
+        const focusLine = railRect.top + railRect.height * focusRatio;
         let nextActiveIndex = 0;
-        let minDistanceToAnchor = Number.POSITIVE_INFINITY;
+        let crossedIndex = -1;
 
         cards.forEach((card, index) => {
           const rect = card.getBoundingClientRect();
-          const cardCenter = rect.top + rect.height / 2;
-          const distanceToAnchor = Math.abs(cardCenter - activeAnchor);
+          const cardTop = rect.top;
+          const distance = Math.abs(cardTop - focusLine);
+          const normalized = Math.min(distance / (railRect.height / 2), 1);
 
-          if (distanceToAnchor < minDistanceToAnchor) {
-            minDistanceToAnchor = distanceToAnchor;
-            nextActiveIndex = index;
+          // Activate the last card whose top edge has reached the focus line.
+          if (cardTop <= focusLine) {
+            crossedIndex = index;
           }
+
+          gsap.to(card, {
+            x: normalized * 16,
+            scale: 1 - normalized * 0.08,
+            opacity: 1 - normalized * 0.35,
+            duration: 0.35,
+            ease: "power2.out",
+            overwrite: true,
+          });
         });
+
+        if (crossedIndex >= 0) {
+          nextActiveIndex = crossedIndex;
+        }
 
         setActiveIndex((prev) => (prev === nextActiveIndex ? prev : nextActiveIndex));
       };
 
-      const onScroll = () => {
-        animateCardsByScroll();
+      const onWheel = (event: WheelEvent) => {
+        event.preventDefault();
+        setOffset(currentOffset + event.deltaY, true);
+      };
+
+      const onPointerDown = (event: PointerEvent) => {
+        isDragging = true;
+        dragStartY = event.clientY;
+        dragStartOffset = currentOffset;
+        rail.setPointerCapture(event.pointerId);
+      };
+
+      const onPointerMove = (event: PointerEvent) => {
+        if (!isDragging) return;
+        const delta = event.clientY - dragStartY;
+        setOffset(dragStartOffset - delta, false);
+      };
+
+      const onPointerUp = (event: PointerEvent) => {
+        isDragging = false;
+        rail.releasePointerCapture(event.pointerId);
       };
 
       const onResize = () => {
+        refreshBounds();
         animateCardsByScroll();
       };
 
+      refreshBounds();
       animateCardsByScroll();
 
-      rail.addEventListener("scroll", onScroll);
+      rail.addEventListener("wheel", onWheel, { passive: false });
+      rail.addEventListener("pointerdown", onPointerDown);
+      rail.addEventListener("pointermove", onPointerMove);
+      rail.addEventListener("pointerup", onPointerUp);
+      rail.addEventListener("pointercancel", onPointerUp);
       window.addEventListener("resize", onResize);
 
       return () => {
-        rail.removeEventListener("scroll", onScroll);
+        rail.removeEventListener("wheel", onWheel);
+        rail.removeEventListener("pointerdown", onPointerDown);
+        rail.removeEventListener("pointermove", onPointerMove);
+        rail.removeEventListener("pointerup", onPointerUp);
+        rail.removeEventListener("pointercancel", onPointerUp);
         window.removeEventListener("resize", onResize);
       };
     }, sectionRef);
@@ -153,9 +236,9 @@ const SolutionHowItWork = () => {
 
             <div
               ref={cardsRailRef}
-              className="relative h-116 overflow-y-auto overflow-x-hidden pr-2 select-none scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className="relative h-116 overflow-hidden pr-2 select-none cursor-grab active:cursor-grabbing"
             >
-              <div ref={cardsTrackRef} className="flex flex-col gap-2 pb-2">
+              <div ref={cardsTrackRef} className="flex flex-col gap-2 pb-0 will-change-transform">
                 {data.map((item, index) => {
                   const isActive = activeIndex === index;
 
