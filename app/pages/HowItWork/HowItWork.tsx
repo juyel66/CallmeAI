@@ -5,11 +5,12 @@ import Link from "next/link";
 import imgHowItWorks from "../../../public/images/Rectangle 16 (1).svg";
 
 const howItWorksData = [
+ 
   {
     id: 1,
-    title: "Appointment Booked On Calendar",
+    title: "Leads Instantly Contacted",
     description:
-      "Prequalified appointments are scheduled straight into your calendar",
+      "Reach every new lead within seconds — no delays, no lost opportunities.",
   },
   {
     id: 2,
@@ -27,7 +28,7 @@ const howItWorksData = [
     id: 4,
     title: "Appointment Booked On Calendar",
     description:
-      "Prequalified appointments are scheduled straight into your calendar",
+      "Prequalified appointments are scheduled straight into your calendar.",
   },
   {
     id: 5,
