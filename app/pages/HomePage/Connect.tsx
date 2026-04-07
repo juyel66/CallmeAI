@@ -5,7 +5,7 @@ import iconsImage from '../../../public/images/frammmm.svg';
 
 const Connect = () => {
   return (
-    <section className="w-full bg-linear-to-b  py-14 sm:py-20 md:py-24 lg:py-28 transition-all duration-300">
+    <section className="w-full bg-linear-to-b  py-5 sm:py-15 md:py-15 lg:py-28 transition-all duration-300">
       <div className="container mx-auto px-4 sm:px-6 transition-all duration-300">
         
         {/* 3-Column Grid Layout */}
