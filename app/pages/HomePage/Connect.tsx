@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 import imageBanner from '../../../public/images/Rectangle 9.svg';
-import iconsImage from '../../../public/images/framm.svg';
+import iconsImage from '../../../public/images/frammmm.svg';
 
 const Connect = () => {
   return (
