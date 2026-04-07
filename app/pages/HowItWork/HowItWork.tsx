@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import imgHowItWorks from "../../../public/images/Rectangle 16.svg";
+import imgHowItWorks from "../../../public/images/Rectangle 16 (1).svg";
 
 const howItWorksData = [
   {
@@ -51,22 +51,22 @@ export default function HowItWork() {
         background: "linear-gradient(90deg, #ffffff 0%, #f4e5ff 100%)",
       }}
     >
-      <div className="container mx-auto flex flex-col items-center  lg:flex-row   lg:gap-12 lg:px-2">
+      <div className="container mx-auto flex flex-col items-center gap-0.5 lg:flex-row lg:items-center lg:justify-center lg:gap-10 lg:px-2">
         
         {/* IMAGE - 2/5 */}
-        <div className="w-full max-w-145 lg:w-[46%] lg:max-w-none">
+        <div className="w-full max-w-130 lg:w-[44%] lg:max-w-140">
           <Image
             src={imgHowItWorks}
             alt="How It Works"
             className="h-auto w-full"
-            width={680}
-            height={510}
+            width={560}
+            height={420}
             priority
           />
         </div>
 
         {/* TEXT - 3/5 */}
-        <div className="w-full lg:w-[48%] p-2">
+  <div className="w-full p-2 lg:w-[44%] lg:max-w-140">
           <h2 className="text-center text-3xl font-bold text-black sm:text-4xl md:text-5xl lg:text-left">
             How It Works
           </h2>
