@@ -282,7 +282,7 @@ export default function AIJustGot() {
               type="button"
               onClick={() => setIsPlaying((prev) => !prev)}
               aria-label={isPlaying ? "Pause" : "Play"}
-              className="flex h-9 md:ml-0 ml-10 w-9 mt-15 items-center justify-center rounded-full bg-white text-purple-600 shadow-md transition-all duration-300 hover:scale-110"
+              className=" h-9 hidden md:ml-0 ml-10 w-9 mt-15 items-center justify-center rounded-full bg-white text-purple-600 shadow-md transition-all duration-300 hover:scale-110"
             >
               {isPlaying ? (
                 <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
