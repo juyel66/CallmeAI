@@ -32,7 +32,7 @@ const SolutionsHeroPages = () => {
                             cursor-pointer
                         sm:mt-8 sm:px-6 sm:py-3 sm:text-base
                     ">
-                        Book a demo 
+                        Book a Call 
                           <svg
                     width="17"
                     height="17"
