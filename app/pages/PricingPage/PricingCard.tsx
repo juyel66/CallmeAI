@@ -103,7 +103,7 @@ const PricingCard = () => {
             >
               {/* MOST POPULAR */}
               {plan.highlight && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#A533FF] text-white text-xs px-3 py-1 rounded-full">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#A533FF] text-white text-xs px-4 py-2 rounded-full">
                   Most Popular
                 </div>
               )}
@@ -163,7 +163,7 @@ const PricingCard = () => {
               <ul className="mt-6 space-y-3 text-sm text-gray-700">
                 {plan.features.map((item, i) => (
                   <li key={i} className="flex items-start gap-2">
-                    <span className="text-[#A533FF] mt-1">✔</span>
+                    <span className="text-[#8E00FF] mt-1">✔</span>
                     <span>{item}</span>
                   </li>
                 ))}
