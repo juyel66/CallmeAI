@@ -235,7 +235,7 @@ export default function AIJustGot() {
                           <Image
                             src={card.image}
                             alt={card.title}
-                            className="mt-2 h-68 w-full rounded-2xl object-cover"
+                            className="mt-2 h-68 w-full border-t-2 border-l-2 border-r-2 border-gray-200 rounded-2xl object-cover"
                             width={400}
                             height={560}
                           />
