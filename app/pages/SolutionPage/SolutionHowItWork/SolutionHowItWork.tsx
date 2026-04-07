@@ -55,44 +55,8 @@ const SolutionHowItWork = () => {
     const ctx = gsap.context(() => {
       const cards = gsap.utils.toArray<HTMLElement>(".solution-card");
       const rail = cardsRailRef.current;
-      const track = cardsTrackRef.current;
 
-      if (!rail || !track) return;
-
-      let currentOffset = 0;
-      let maxOffset = 0;
-      let isDragging = false;
-      let dragStartY = 0;
-      let dragStartOffset = 0;
-
-      const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
-
-      const refreshBounds = () => {
-        maxOffset = Math.max(track.scrollHeight - rail.clientHeight, 0);
-
-        // Keep initial viewport locked to the first three full cards.
-        currentOffset = clamp(currentOffset, 0, maxOffset);
-
-        gsap.set(track, { y: -currentOffset });
-      };
-
-      const setOffset = (nextOffset: number, animate = true) => {
-        currentOffset = clamp(nextOffset, 0, maxOffset);
-
-        if (animate) {
-          gsap.to(track, {
-            y: -currentOffset,
-            duration: 0.45,
-            ease: "power3.out",
-            overwrite: true,
-            onUpdate: animateCardsByScroll,
-          });
-          return;
-        }
-
-        gsap.set(track, { y: -currentOffset });
-        animateCardsByScroll();
-      };
+      if (!rail) return;
 
       gsap.fromTo(
         cards,
@@ -131,66 +95,26 @@ const SolutionHowItWork = () => {
             minDistanceToAnchor = distanceToAnchor;
             nextActiveIndex = index;
           }
-
-          const isCardActive = index === nextActiveIndex;
-
-          gsap.to(card, {
-            x: isCardActive ? 0 : 14,
-            scale: isCardActive ? 1 : 0.94,
-            opacity: isCardActive ? 1 : 0.78,
-            duration: 0.35,
-            ease: "power2.out",
-            overwrite: true,
-          });
         });
 
         setActiveIndex((prev) => (prev === nextActiveIndex ? prev : nextActiveIndex));
       };
 
-      const onWheel = (event: WheelEvent) => {
-        event.preventDefault();
-        setOffset(currentOffset + event.deltaY, true);
-      };
-
-      const onPointerDown = (event: PointerEvent) => {
-        isDragging = true;
-        dragStartY = event.clientY;
-        dragStartOffset = currentOffset;
-        rail.setPointerCapture(event.pointerId);
-      };
-
-      const onPointerMove = (event: PointerEvent) => {
-        if (!isDragging) return;
-        const delta = event.clientY - dragStartY;
-        setOffset(dragStartOffset - delta, false);
-      };
-
-      const onPointerUp = (event: PointerEvent) => {
-        isDragging = false;
-        rail.releasePointerCapture(event.pointerId);
-      };
-
-      const onResize = () => {
-        refreshBounds();
+      const onScroll = () => {
         animateCardsByScroll();
       };
 
-      refreshBounds();
+      const onResize = () => {
+        animateCardsByScroll();
+      };
+
       animateCardsByScroll();
 
-      rail.addEventListener("wheel", onWheel, { passive: false });
-      rail.addEventListener("pointerdown", onPointerDown);
-      rail.addEventListener("pointermove", onPointerMove);
-      rail.addEventListener("pointerup", onPointerUp);
-      rail.addEventListener("pointercancel", onPointerUp);
+      rail.addEventListener("scroll", onScroll);
       window.addEventListener("resize", onResize);
 
       return () => {
-        rail.removeEventListener("wheel", onWheel);
-        rail.removeEventListener("pointerdown", onPointerDown);
-        rail.removeEventListener("pointermove", onPointerMove);
-        rail.removeEventListener("pointerup", onPointerUp);
-        rail.removeEventListener("pointercancel", onPointerUp);
+        rail.removeEventListener("scroll", onScroll);
         window.removeEventListener("resize", onResize);
       };
     }, sectionRef);
@@ -229,14 +153,14 @@ const SolutionHowItWork = () => {
 
             <div
               ref={cardsRailRef}
-              className="relative h-116 overflow-hidden pr-2 select-none cursor-grab active:cursor-grabbing"
+              className="relative h-116 overflow-y-auto overflow-x-hidden pr-2 select-none scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             >
-              <div ref={cardsTrackRef} className="flex flex-col gap-2 pb-0 will-change-transform">
+              <div ref={cardsTrackRef} className="flex flex-col gap-2 pb-2">
                 {data.map((item, index) => {
                   const isActive = activeIndex === index;
 
                   return (
-                    <div key={`${item.title}-${index}`} className="solution-card relative pl-17 ">
+                    <div key={`${item.title}-${index}`} className="solution-card relative pl-17">
                       <button
                         type="button"
                         aria-label={`Select ${item.title}`}
