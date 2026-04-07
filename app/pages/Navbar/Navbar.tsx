@@ -4,7 +4,7 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import logoImage from "../../../public/images/logo.svg";
+import logoImage from "../../../public/images/logo2.svg";
 
 const navItems = [
     { label: "Solutions", href: "/solutions" },
@@ -22,10 +22,10 @@ const Navbar = () => {
         <header className="w-full flex justify-center py-6 fixed top-0 left-0 z-50 bg-transparent">
             <div className="w-full max-w-6xl px-4">
                 
-                {/* NAVBAR */}
+              
                 <nav className="flex items-center justify-between rounded-full border border-[#8E00FF] px-6 py-3 bg-white">
 
-                    {/* LOGO */}
+                
                     <Link href="/" className="flex items-center">
                         <Image
                             src={logoImage}
@@ -35,7 +35,7 @@ const Navbar = () => {
                         />
                     </Link>
 
-                    {/* DESKTOP MENU */}
+                  
                     <ul className="hidden lg:flex items-center gap-10">
                         {navItems.map((item) => (
                             <li key={item.label}>
@@ -56,7 +56,7 @@ const Navbar = () => {
                         ))}
                     </ul>
 
-                    {/* DESKTOP BUTTON */}
+                 
                     <Link
                         href="/contact"
                         className="hidden lg:inline-flex items-center rounded-full bg-gradient-to-r bg-[#8E00FF] px-6 py-3 text-white font-medium shadow-md hover:opacity-90 transition"
@@ -64,7 +64,7 @@ const Navbar = () => {
                         Book a Call 
                     </Link>
 
-                    {/* MOBILE HAMBURGER */}
+                   
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                         className="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-1"
