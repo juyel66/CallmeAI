@@ -43,7 +43,7 @@ const data = [
 
 
 const SolutionHowItWork = () => {
-  const initialActiveIndex = 1;
+  const initialActiveIndex = 0;
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsRailRef = useRef<HTMLDivElement>(null);
   const cardsTrackRef = useRef<HTMLDivElement>(null);
@@ -117,25 +117,27 @@ const SolutionHowItWork = () => {
 
       const animateCardsByScroll = () => {
         const railRect = rail.getBoundingClientRect();
-        const railCenter = railRect.top + railRect.height / 2;
+        const firstCardHeight = cards[0]?.getBoundingClientRect().height ?? 136;
+        const activeAnchor = railRect.top + firstCardHeight / 2;
         let nextActiveIndex = 0;
-        let minDistance = Number.POSITIVE_INFINITY;
+        let minDistanceToAnchor = Number.POSITIVE_INFINITY;
 
         cards.forEach((card, index) => {
           const rect = card.getBoundingClientRect();
           const cardCenter = rect.top + rect.height / 2;
-          const distance = Math.abs(cardCenter - railCenter);
-          const normalized = Math.min(distance / (railRect.height / 2), 1);
+          const distanceToAnchor = Math.abs(cardCenter - activeAnchor);
 
-          if (distance < minDistance) {
-            minDistance = distance;
+          if (distanceToAnchor < minDistanceToAnchor) {
+            minDistanceToAnchor = distanceToAnchor;
             nextActiveIndex = index;
           }
 
+          const isCardActive = index === nextActiveIndex;
+
           gsap.to(card, {
-            x: normalized * 16,
-            scale: 1 - normalized * 0.08,
-            opacity: 1 - normalized * 0.35,
+            x: isCardActive ? 0 : 14,
+            scale: isCardActive ? 1 : 0.94,
+            opacity: isCardActive ? 1 : 0.78,
             duration: 0.35,
             ease: "power2.out",
             overwrite: true,
@@ -234,7 +236,7 @@ const SolutionHowItWork = () => {
                   const isActive = activeIndex === index;
 
                   return (
-                    <div key={`${item.title}-${index}`} className="solution-card relative pl-17">
+                    <div key={`${item.title}-${index}`} className="solution-card relative pl-17 ">
                       <button
                         type="button"
                         aria-label={`Select ${item.title}`}
