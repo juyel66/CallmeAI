@@ -154,7 +154,7 @@ const HeroSection = () => {
 
       {/* Content Box */}
       <div className="relative z-10 w-full container mx-auto ">
-        <div className="rounded-2xl border  border-white/20  bg-black/20 p-4 text-center shadow-lg backdrop-blur-sm sm:p-8 md:p-12">
+        <div className="rounded-2xl border  border-white/20  bg-white/4 p-4 text-center shadow-lg backdrop-blur-[3px] sm:p-8 md:p-12">
 
           {/* Heading */}
           <h1 className="mb-4 text-2xl font-bold leading-tight text-white sm:text-4xl md:text-5xl">
