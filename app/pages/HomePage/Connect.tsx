@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import imageBanner from '../../../public/images/Page 1.svg';
+import imageBanner from '../../../public/images/Page 1 (1).svg';
 import iconsImage from '../../../public/images/frammmm.svg';
 
 const Connect = () => {
@@ -38,16 +38,14 @@ const Connect = () => {
 
           {/* RIGHT IMAGE - Takes 2 columns */}
           <div className="lg:col-span-2 relative w-full flex justify-center transition-all duration-300">
-            <div className="relative h-[320px] sm:h-[370px] md:h-[430px] lg:h-[520px] w-full max-w-5xl">
-              <Image
-                src={imageBanner}
-                alt="Flowchart"
-                fill
-                className="object-contain object-center transition-all duration-300"
-                sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 66vw"
-                priority
-              />
-            </div>
+        <div className="relative w-full h-auto  md:h-[430px] lg:h-[520px] md:max-w-5xl">
+  <Image
+    src={imageBanner}
+    alt="Flowchart"
+    className="w-full h-auto object-contain md:object-cover rounded-xl border border-purple-500 shadow-xl"
+    priority
+  />
+</div>
           </div>
 
         </div>
