@@ -1,9 +1,11 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Link from "next/link";
+import solutionHowItWOrk from "../../../../public/images/solutionHowItWOrk.svg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -41,10 +43,11 @@ const data = [
 
 
 const SolutionHowItWork = () => {
+  const initialActiveIndex = 1;
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsRailRef = useRef<HTMLDivElement>(null);
   const cardsTrackRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(initialActiveIndex);
 
   useEffect(() => {
     if (!sectionRef.current || !cardsRailRef.current) return;
@@ -66,7 +69,10 @@ const SolutionHowItWork = () => {
 
       const refreshBounds = () => {
         maxOffset = Math.max(track.scrollHeight - rail.clientHeight, 0);
+
+        // Keep initial viewport locked to the first three full cards.
         currentOffset = clamp(currentOffset, 0, maxOffset);
+
         gsap.set(track, { y: -currentOffset });
       };
 
@@ -127,7 +133,7 @@ const SolutionHowItWork = () => {
           }
 
           gsap.to(card, {
-            y: normalized * 12,
+            x: normalized * 16,
             scale: 1 - normalized * 0.08,
             opacity: 1 - normalized * 0.35,
             duration: 0.35,
@@ -197,110 +203,104 @@ const SolutionHowItWork = () => {
   return (
     <section
       ref={sectionRef}
-      className="w-full px-4 py-12 sm:px-6 sm:py-14 lg:px-8 bg-linear-to-r from-[#a855f7] via-[#c084fc] to-[#e9d5ff]"
+      className="w-full px-4 py-14 sm:px-6 sm:py-16 lg:px-8 bg-linear-to-r from-[#a855f7] via-[#c084fc] to-[#e9d5ff]"
     >
-      <div className="max-w-7xl mx-auto grid items-start gap-10 lg:grid-cols-[1fr_2fr] lg:gap-2">
-
-        {/* LEFT SIDE (CENTER STICKY) */}
-        <div className="flex items-center justify-center lg:h-140">
-          <div className="text-center max-w-xl lg:max-w-none">
-            <h2 className="text-3xl font-bold text-black sm:text-4xl lg:text-5xl">
-              How It Works
-            </h2>
-
-              <p className="mt-3 max-w-xl text-[15px] leading-7">
-    <span className="inline-block whitespace-nowrap">Optimize your sales process with,</span>
-    <br />
-    <span className="inline-block whitespace-nowrap">automated calling, SMS, and AI. Reach,</span>
-    <br />
-    <span className="inline-block whitespace-nowrap">more leads, book more appointments, and,</span>
-    <br />
-    <span className="inline-block whitespace-nowrap">close more deals.</span>
-  </p>
-
-   <Link
-  href="/contact"
-    className="mx-auto mt-4 flex w-40 items-center justify-center gap-2 rounded-xl bg-[#8E00FF] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#6f14f1] sm:mt-5 sm:px-6 sm:py-3"
->
-  Book a demo
-  <svg
-    width="17"
-    height="17"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2.5"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M5 12h14M12 5l7 7-7 7" />
-  </svg>
-</Link>
+      <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12">
+        <div className="flex items-center justify-center">
+          <div className="w-full max-w-150 rounded-2xl p-4 sm:p-5">
+            <Image
+              src={solutionHowItWOrk}
+              alt="Solution Illustration"
+              className="h-auto w-full"
+              priority
+            />
           </div>
         </div>
 
-        {/* RIGHT SIDE HORIZONTAL CARDS */}
-        <div className="relative hidden md:block">
-          <div className="absolute left-6 top-0 h-full border-l-2 border-dashed border-[#9333EA]/60" />
+        <div className="min-w-0">
+          <h2 className="text-center text-3xl font-bold text-black sm:text-4xl lg:text-[3rem]">
+            How It Work
+          </h2>
 
-          <div
-            ref={cardsRailRef}
-            className="relative h-140 overflow-hidden pr-2 select-none cursor-grab active:cursor-grabbing"
-          >
-            <div ref={cardsTrackRef} className="flex flex-col gap-6 pb-12 will-change-transform">
-              {data.map((item, index) => {
-                const isActive = activeIndex === index;
+          <div className="relative mt-8 hidden md:block">
+            <div className="absolute left-6 top-0 h-full border-l-2 border-dashed border-[#9333EA]/60" />
 
-                return (
-                  <div key={index} className="solution-card relative pl-14">
-                    <div
-                      onClick={() => HandleVerticaleLine(index)}
-                      className={`absolute top-1/2 -translate-y-1/2 rounded-full bg-[#8A2BE2] transition-all duration-200 ${
-                        isActive ? "left-1.5 h-8 w-8" : "left-3 h-6 w-6"
-                      }`}
-                    />
-
-                    <div
-                      className={`min-h-40 rounded-xl border p-6 text-start shadow-sm transition-all duration-300 ${
-                        isActive
-                          ? "border-white bg-white shadow-[0_14px_30px_rgba(0,0,0,0.10)]"
-                          : "border-[#D7D7D7] bg-[#F2F2F2]"
-                      }`}
-                    >
-                      <h3 className={`mt-5 text-xl font-semibold ${isActive ? "text-black" : "text-gray-700"}`}>
-                        {item.title}
-                      </h3>
-                      <p className={`mt-3 text-base ${isActive ? "text-gray-700" : "text-gray-500"}`}>
-                        {item.desc}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        {/* MOBILE / TABLET STACK */}
-        <div className="grid gap-4 md:hidden">
-          {data.map((item, index) => (
             <div
-              key={index}
-              className="rounded-xl border border-[#D7D7D7] bg-[#F2F2F2] p-5 text-left shadow-sm"
+              ref={cardsRailRef}
+              className="relative h-116 overflow-hidden pr-2 select-none cursor-grab active:cursor-grabbing"
             >
-              <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#8A2BE2] text-sm font-semibold text-white">
-                {index + 1}
-              </div>
-              <h3 className="text-lg font-semibold text-gray-700 sm:text-xl">
-                {item.title}
-              </h3>
-              <p className="mt-3 text-sm leading-6 text-gray-500 sm:text-base">
-                {item.desc}
-              </p>
-            </div>
-          ))}
-        </div>
+              <div ref={cardsTrackRef} className="flex flex-col gap-2 pb-0 will-change-transform">
+                {data.map((item, index) => {
+                  const isActive = activeIndex === index;
 
+                  return (
+                    <div key={`${item.title}-${index}`} className="solution-card relative pl-17">
+                      <button
+                        type="button"
+                        aria-label={`Select ${item.title}`}
+                        onClick={() => HandleVerticaleLine(index)}
+                        className={`absolute top-1/2 -translate-y-1/2 rounded-full bg-[#8A2BE2] transition-all duration-200 ${
+                          isActive ? "left-1.5 h-8 w-8" : "left-3 h-6 w-6"
+                        }`}
+                      />
+
+                      <div
+                        className={`h-34 rounded-xl border p-6 text-start shadow-sm transition-all duration-300 ${
+                          isActive
+                            ? "border-white bg-white shadow-[0_14px_30px_rgba(0,0,0,0.10)]"
+                            : "border-[#D3D3D3] bg-[#EDEDED]"
+                        }`}
+                      >
+                        <h3 className={`mt-1 text-base font-semibold sm:text-lg ${isActive ? "text-black" : "text-gray-700"}`}>
+                          {item.title}
+                        </h3>
+                        <p className={`mt-1 text-xs leading-5 sm:text-sm ${isActive ? "text-gray-700" : "text-gray-500"}`}>
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 grid gap-4 md:hidden">
+            {data.map((item, index) => (
+              <div
+                key={`${item.title}-${index}`}
+                className="rounded-xl border border-[#D7D7D7] bg-[#F2F2F2] p-5 text-left shadow-sm"
+              >
+                <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#8A2BE2] text-sm font-semibold text-white">
+                  {index + 1}
+                </div>
+                <h3 className="text-lg font-semibold text-gray-700 sm:text-xl">{item.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-gray-500 sm:text-base">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-7 flex justify-end sm:mt-8">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#8E00FF] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#6f14f1] sm:px-6 sm:py-3"
+            >
+              Book a Call
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
   );
