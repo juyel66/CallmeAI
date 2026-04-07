@@ -10,7 +10,7 @@ const ContactPage = () => {
       <div className="w-full bg-gradient-to-r from-[#a855f7] via-[#c084fc] to-[#e9d5ff] py-16 text-center text-white ">
         <h2 className="text-3xl md:text-4xl font-bold">Contact Us</h2>
         <p className="mt-3 text-sm md:text-base opacity-90">
-          Tell us about your team and we&apos;ll follow up. Book a demo to hear the AI in action.
+          Get in touch with our team and see how CallmeAI can transform your sales process
         </p>
       </div>
 
@@ -21,7 +21,7 @@ const ContactPage = () => {
         <div className="rounded-2xl border  border-[#c4b5fd] bg-white p-6 shadow-md mb-20">
 
           <h3 className="text-2xl font-semibold text-black mb-6">
-            Send a message
+            Let's Talk
           </h3>
 
           <form className="space-y-4 text-black">
@@ -29,37 +29,33 @@ const ContactPage = () => {
             {/* NAME */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-black">
               <div>
-                <label className="text-sm font-medium">First name</label>
+                <label className="text-sm font-medium">First name*</label>
                 <input className="mt-1 w-full border rounded-md px-3 py-2 text-sm" placeholder="Enter First name" />
               </div>
 
               <div>
-                <label className="text-sm font-medium">Last name</label>
+                <label className="text-sm font-medium">Last name*</label>
                 <input className="mt-1 w-full border rounded-md px-3 py-2 text-sm" placeholder="Enter last name" />
               </div>
             </div>
 
             {/* EMAIL */}
             <div>
-              <label className="text-sm font-medium">Work email</label>
+              <label className="text-sm font-medium">Work email*</label>
               <input className="mt-1 w-full border rounded-md px-3 py-2 text-sm" placeholder="Enter work email" />
             </div>
 
             {/* PHONE */}
             <div>
-              <label className="text-sm font-medium">Phone</label>
+              <label className="text-sm font-medium">Phone*</label>
               <input className="mt-1 w-full border rounded-md px-3 py-2 text-sm" placeholder="Enter phone number" />
             </div>
 
-            {/* COMPANY */}
-            <div>
-              <label className="text-sm font-medium">Company</label>
-              <input className="mt-1 w-full border rounded-md px-3 py-2 text-sm" placeholder="Enter Company name" />
-            </div>
+          
 
             {/* MESSAGE */}
             <div>
-              <label className="text-sm font-medium">How can we help?</label>
+              <label className="text-sm font-medium">How can we help?*</label>
               <textarea rows={4} className="mt-1 w-full border rounded-md px-3 py-2 text-sm" placeholder="Enter message......" />
             </div>
 
@@ -104,8 +100,8 @@ const ContactPage = () => {
               Want to hear CallmeAI in action? Schedule time with our team — we&apos;ll walk through outbound calling, follow-up, and calendar <br /> booking for your workflow.
             </p>
 
-            <button className="mt-4 rounded-lg bg-[#8E00FF] px-5 py-2 text-white text-sm">
-              Call 012-120-120
+            <button className="mt-4 rounded-lg bg-[#8E00FF] px-7 py-3 text-white text-sm">
+              Book Call
             </button>
           </div>
 
@@ -114,9 +110,9 @@ const ContactPage = () => {
             <h4 className="text-2xl font-semibold text-black">Company</h4>
 
             <div className="mt-3 text-sm text-gray-700 space-y-1">
-              <p className="font-medium text-xl ">CallmeAI</p>
-              <p className="text-xl ">Contact: Jeremy Fox</p>
-              <p className="text-[#7F20FF] text-xl font-medium">805-630-5770</p>
+              <p className="font-semibold text-xl  ">CallmeAI</p>
+              
+              <p className=" text-xl font-medium">Contact: Jeremy@callmeai.com</p>
             </div>
           </div>
 
