@@ -41,7 +41,7 @@ const SolutionsHeroPages = () => {
                 </div>
 
              
-                <div className="relative flex min-w-0 items-center justify-center transition-all duration-300 md:justify-self-end">
+                <div className="relative flex min-w-full items-center justify-center transition-all duration-300 md:justify-self-end">
                     <Image
                         src={groupImage}
                         alt="AI Dashboard"
