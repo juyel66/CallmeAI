@@ -26,7 +26,7 @@ const AiSolutions: React.FC = () => {
 
         {/* Subtext */}
         <p className="text-white/90 text-base md:text-lg mb-8">
-          Want to hear it in action? Book a Call with our team!
+          Want to hear it in action? Book a call with our team!
         </p>
 
         {/* Button */}
