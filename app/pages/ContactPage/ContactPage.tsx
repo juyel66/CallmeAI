@@ -1,8 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import { useRef } from "react";
 
 const ContactPage = () => {
+  const mobileFormRef = useRef<HTMLDivElement | null>(null);
+
+  const handleMobileDemoClick = () => {
+    if (window.innerWidth < 768) {
+      mobileFormRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <section className="w-full min-h-screen ">
 
@@ -37,7 +46,11 @@ const ContactPage = () => {
               Want to hear CallmeAI in action? Schedule time with our team — we&apos;ll walk through outbound calling, follow-up, and calendar <br /> booking for your workflow.
             </p>
 
-            <button className="mt-4 rounded-lg bg-[#8E00FF] px-7 py-3 text-white text-sm">
+            <button
+              type="button"
+              onClick={handleMobileDemoClick}
+              className="mt-4 rounded-lg bg-[#8E00FF] px-7 py-3 text-white text-sm"
+            >
               Book a Demo
             </button>
           </div>
@@ -52,7 +65,7 @@ const ContactPage = () => {
 
 
        
-        <div className="rounded-2xl border  border-[#c4b5fd] bg-white p-6 shadow-md mb-6">
+        <div ref={mobileFormRef} className="rounded-2xl border  border-[#c4b5fd] bg-white p-6 shadow-md mb-6">
 
           <h3 className="text-2xl font-semibold text-black mb-6">
             Let's Talk
