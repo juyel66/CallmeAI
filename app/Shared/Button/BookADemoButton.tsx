@@ -107,7 +107,7 @@ const BookADemoButton = ({ className = "" }: BookADemoButtonProps) => {
         >
             <div data-anim-bg className="pointer-events-none absolute inset-0 rounded-xl opacity-0" />
             <span className="relative z-10 flex w-full items-center justify-center gap-2">
-                Book a Call
+                Book a Demo
                 <svg
                     width="20"
                     height="20"
