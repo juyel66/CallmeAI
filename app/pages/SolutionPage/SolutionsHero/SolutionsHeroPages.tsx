@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import groupImage from "../../../../public/images/Group 15.svg";
-import groupImageMobile from "../../../../public/images/HeroSection11.svg";
+import groupImage from "../../../../public/images/Group 18 copy.svg";
+import groupImageMobile from "../../../../public/images/Background (2).svg";
 import Link from "next/link";
 
 const SolutionsHeroPages = () => {
@@ -24,7 +24,7 @@ const SolutionsHeroPages = () => {
                         href="/contact"
                         className="mt-7 inline-flex cursor-pointer items-center gap-2 rounded-lg bg-[#8E00FF] px-5 py-2.5 text-sm font-medium text-white shadow-md transition-all duration-300 hover:bg-[#7A00CC] sm:mt-8 sm:px-6 sm:py-3 sm:text-base"
                     >
-                        Book a Demo
+                        Book a Call
                         <svg
                             width="17"
                             height="17"
