@@ -262,7 +262,7 @@ const SolutionHowItWork = () => {
             ))}
           </div>
 
-          <div className="mt-7 flex justify-end sm:mt-8">
+          <div className="mt-7 flex justify-start sm:mt-8">
             <Link
               href="/contact"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#8E00FF] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#6f14f1] sm:px-6 sm:py-3"
