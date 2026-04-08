@@ -150,7 +150,7 @@ const Buttons = () => {
                     />
                 </svg>
                 <span className="relative z-10 flex w-full items-center justify-center gap-2">
-                    Book a Call 
+                    Book a Demo 
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="ml-1">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
