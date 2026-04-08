@@ -251,7 +251,7 @@ const ContactPage = () => {
             <div className="mt-3 text-sm text-gray-700 space-y-1">
               <p className="font-semibold text-xl  ">CallmeAI</p>
               
-              <p className=" text-xl font-medium">Contact: jeremy@callmeai.ai</p>
+              <p className=" text-xl font-medium">Contact: hello@callmeai.ai</p>
             </div>
           </div>
 
