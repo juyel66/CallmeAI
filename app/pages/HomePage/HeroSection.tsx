@@ -30,7 +30,7 @@ const HeroSection = () => {
 
       <div className="relative z-10 w-full container mx-auto">
         <div className="rounded-2xl border border-white/20 bg-white/4 p-4 text-center shadow-lg backdrop-blur-[1px] sm:p-8 md:p-12">
-          <h1 className="mb-4 text-2xl font-bold leading-tight text-white sm:text-4xl md:text-5xl">
+          <h1 className="mb-4 text-xl font-bold leading-tight text-white sm:text-4xl md:text-5xl">
             Automated Lead Contact, Follow-Up & <br /> Prequalified Bookings — Straight to Your <br /> Calendar
           </h1>
 
