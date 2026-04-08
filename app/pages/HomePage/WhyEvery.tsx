@@ -1,10 +1,10 @@
 import Image from "next/image";
-import clockIcons from "../../../public/images/Component 4 (1).svg";
-import Component from "../../../public/images/Component 4.svg";
-import TreeNumberIcons from "../../../public/images/Component 4 (2).svg";
-import TreeNumberIconsB from "../../../public/images/Component 4 (3).svg";
-import TreeNumberIconsBa from "../../../public/images/Component 4 (4).svg";
-import TreeNumberIconsBac from "../../../public/images/Component 4 (5).svg";
+import clockIcons from "../../../public/images/hugeicons_tick-04 (1).svg";
+import Component from "../../../public/images/hugeicons_tick-04 (2).svg";
+import TreeNumberIcons from "../../../public/images/hugeicons_tick-04 (3).svg";
+import TreeNumberIconsB from "../../../public/images/hugeicons_tick-04 (4).svg";
+import TreeNumberIconsBa from "../../../public/images/hugeicons_tick-04 (5).svg";
+import TreeNumberIconsBac from "../../../public/images/hugeicons_tick-04 (6).svg";
 
 const items = [
   {
@@ -63,8 +63,14 @@ const WhyEvery = () => {
                 key={index}
                 className="flex items-center gap-3 p-4  rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition"
               >
-                <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 ">
-                  <Image src={item.customIcon} alt="feature icon" width={20} height={20} />
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center">
+                  <Image
+                    src={item.customIcon}
+                    alt="feature icon"
+                    width={40}
+                    height={40}
+                    className="h-10 w-10 object-contain"
+                  />
                 </div>
                 <p className="text-[15px] text-gray-700 text-left">{item.text}</p>
               </div>
