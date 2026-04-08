@@ -101,7 +101,7 @@ const ContactPage = () => {
             </p>
 
             <button className="mt-4 rounded-lg bg-[#8E00FF] px-7 py-3 text-white text-sm">
-              Book Call
+              Book a Call
             </button>
           </div>
 
