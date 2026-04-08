@@ -24,7 +24,7 @@ const SolutionsHeroPages = () => {
                         href="/contact"
                         className="mt-7 inline-flex cursor-pointer items-center gap-2 rounded-lg bg-[#8E00FF] px-5 py-2.5 text-sm font-medium text-white shadow-md transition-all duration-300 hover:bg-[#7A00CC] sm:mt-8 sm:px-6 sm:py-3 sm:text-base"
                     >
-                        Book a Call
+                        Book a Demo
                         <svg
                             width="17"
                             height="17"
