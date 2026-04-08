@@ -21,14 +21,14 @@ const HeroSection = () => {
       <div className="relative z-10 w-full container mx-auto ">
         <div className="rounded-2xl border  border-white/20  bg-black/20 p-4 text-center shadow-lg backdrop-blur-sm sm:p-8 md:p-12">
           {/* Heading */}
-          <h1 className="mb-4 text-2xl font-bold leading-tight text-white sm:text-4xl md:text-5xl">
+          <h1 className="mb-4  font-bold leading-tight text-white text-2xl md:text-5xl">
             <span className="md:whitespace-nowrap">
              Automated Lead Contact, Follow-Up & <br /> Prequalified Bookings — Straight to Your <br /> Calendar
             </span>
           </h1>
 
           {/* Description */}
-          <p className="mx-auto mb-7 max-w-3xl px-1 text-sm leading-relaxed text-white sm:mb-8 sm:text-base md:text-lg">
+          <p className="mx-auto mb-7 max-w-3xl px-1 text-[18px] leading-relaxed text-white sm:mb-8  md:text-lg">
             Maximize revenue potential with CallmeAI. Our AI phone agents
             instantly contact new <br />
             leads, follow up automatically, and book high-quality appointments
