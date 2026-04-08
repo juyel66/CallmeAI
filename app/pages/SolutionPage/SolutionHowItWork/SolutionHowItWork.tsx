@@ -46,7 +46,7 @@ const SolutionHowItWork = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsRailRef = useRef<HTMLDivElement>(null);
   const cardsTrackRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     if (!sectionRef.current || !cardsRailRef.current) return;
@@ -217,7 +217,7 @@ const SolutionHowItWork = () => {
                       key={`${item.title}-${index}`}
                       className="solution-card relative pl-13"
                       onMouseEnter={() => setActiveIndex(index)}
-                      onMouseLeave={() => setActiveIndex(null)}
+                      onMouseLeave={() => setActiveIndex(0)}
                     >
                       <button
                         type="button"
@@ -229,7 +229,7 @@ const SolutionHowItWork = () => {
                       <div
                         className={`h-34 rounded-xl hover:border hover:border-purple-600 border p-6 text-start shadow-sm transition-all duration-300 ${
                           isActive
-                            ? "border-white  bg-white shadow-[0_14px_30px_rgba(0,0,0,0.10)]"
+                            ? " border-1 border-purple-500  bg-white shadow-[0_14px_30px_rgba(0,0,0,0.10)]"
                             : "border-[#D3D3D3]  bg-[#EDEDED]"
                         }`}
                       >
