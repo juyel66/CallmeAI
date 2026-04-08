@@ -1,21 +1,22 @@
 "use client";
 
 import Image from "next/image";
-import groupImage from "../../../../public/images/Group 14 (1).svg";
+import groupImage from "../../../../public/images/Group 15.svg";
+import groupImageMobile from "../../../../public/images/HeroSection11.svg";
 import Link from "next/link";
 
 const SolutionsHeroPages = () => {
     return (
-        <section className="w-full py-10 transition-all duration-300 sm:py-12 md:py-20 lg:py-24">
-            <div className="container mx-auto grid items-center gap-8 px-4 transition-all duration-300 sm:px-6 md:grid-cols-2 md:gap-10 lg:gap-12 lg:px-8">
+        <section className="w-full py-10 transition-all duration-300 sm:py-12 md:py-18 lg:py-22">
+            <div className="container mx-auto grid items-center gap-6 px-4 transition-all duration-300 sm:px-6 md:grid-cols-[0.85fr_1.15fr] md:gap-6 lg:gap-8 lg:px-8">
 
                
-                <div className="min-w-0 max-w-xl transition-all duration-300 lg:max-w-none flex flex-col items-start text-left">
-                    <h1 className="md:text-[46px] text-2xl font-bold leading-tight text-black transition-all duration-300">
+                <div className="min-w-0 max-w-lg transition-all duration-300 lg:max-w-none flex flex-col items-start text-left">
+                    <h1 className="text-xl font-bold leading-tight text-black transition-all duration-300 sm:text-2xl md:text-[38px] lg:text-[40px]">
                         Boost Your Sales with AI-Powered Appointment Setting on Autopilot.
                     </h1>
 
-                    <p className="mt-2 max-w-prose text-sm leading-relaxed  text-[#444] transition-all duration-300 sm:mt-6 sm:text-base md:text-[20px] ">
+                    <p className="mt-2 max-w-prose text-xs leading-relaxed text-[#444] transition-all duration-300 sm:mt-5 sm:text-sm md:text-base lg:text-[17px]">
                         Optimize your sales process with automated calling, multi-layer follow up, and smart qualification. Reach more leads, book more appointments, and close more deals.
                     </p>
 
@@ -41,11 +42,25 @@ const SolutionsHeroPages = () => {
                 </div>
 
              
-                <div className="relative flex min-w-full items-center justify-center transition-all duration-300 md:justify-self-end">
+                <div className="relative  md:flex hidden min-w-full items-center justify-center transition-all duration-300 md:justify-self-end">
                     <Image
                         src={groupImage}
                         alt="AI Dashboard"
-                        className="h-auto w-full max-w-96 rounded-2xl object-cover transition-all duration-300 sm:max-w-120 md:max-w-3xl lg:max-w-4xl"
+                        className="h-auto w-full max-w-110 rounded-2xl object-cover transition-all duration-300 sm:max-w-140 md:max-w-4xl lg:max-w-5xl"
+                        width={720}
+                        height={460}
+                    />
+
+                   
+
+                </div>
+
+
+                <div className="relative md:hidden flex min-w-full items-center justify-center transition-all duration-300 md:justify-self-end">
+                    <Image
+                        src={groupImageMobile}
+                        alt="AI Dashboard"
+                        className="h-auto w-full max-w-110 rounded-2xl object-cover transition-all duration-300 sm:max-w-140 md:max-w-4xl lg:max-w-5xl"
                         width={720}
                         height={460}
                     />
