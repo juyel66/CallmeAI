@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import imageBanner from '../../../public/images/Page 1 (1).svg';
 import iconsImage from '../../../public/images/frammmm.svg';
+import iconsImageMobile from '../../../public/images/1212.png';
 
 const Connect = () => {
   return (
@@ -26,7 +27,7 @@ const Connect = () => {
 
             {/* Heading - Now in one line */}
             <h2 className="mb-2 sm:mb-3 md:mb-4 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-black whitespace-nowrap transition-all duration-300">
-              Connect, Qualify and Book
+              Connect, Qualify, and Book
             </h2>
 
             {/* Description */}
@@ -38,7 +39,10 @@ const Connect = () => {
 
           {/* RIGHT IMAGE - Takes 2 columns */}
           <div className="lg:col-span-2 relative w-full flex justify-center transition-all duration-300">
-        <div className="relative w-full h-auto  md:h-[430px] lg:h-[520px] md:max-w-5xl">
+
+
+
+        <div className="relative hidden w-full h-auto md:h-[430px] lg:block lg:h-[520px] md:max-w-5xl">
   <Image
     src={imageBanner}
     alt="Flowchart"
@@ -46,6 +50,19 @@ const Connect = () => {
     priority
   />
 </div>
+
+
+        <div className="relative w-full h-auto lg:hidden md:h-[430px] md:max-w-5xl">
+  <Image
+    src={iconsImageMobile}
+    alt="Flowchart"
+    className="w-full h-auto object-contain md:object-cover rounded-xl border border-purple-500 shadow-xl"
+    priority
+  />
+</div>
+
+
+
           </div>
 
         </div>
