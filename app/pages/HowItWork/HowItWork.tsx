@@ -47,7 +47,7 @@ const howItWorksData = [
 export default function HowItWork() {
   return (
     <section
-      className="w-full py-10 sm:py-12 md:py-16 "
+      className="w-full py-10 sm:py-12 md:py-16 pl-2.5 pr-2.5 "
       style={{
         background: "linear-gradient(90deg, #ffffff 0%, #f4e5ff 100%)",
       }}
