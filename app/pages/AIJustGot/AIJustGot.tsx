@@ -15,11 +15,23 @@ export default function AIJustGot() {
   const [current, setCurrent] = useState(1);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isHovering, setIsHovering] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const dragStartXRef = useRef<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   const total = 5;
+
+  useEffect(() => {
+    const updateIsMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    updateIsMobile();
+    window.addEventListener("resize", updateIsMobile);
+
+    return () => window.removeEventListener("resize", updateIsMobile);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -40,14 +52,14 @@ export default function AIJustGot() {
   }, []);
 
   useEffect(() => {
-    if (!isPlaying || isHovering) return;
+    if (!isPlaying || isHovering || isMobile) return;
 
     const timerId = setInterval(() => {
       setCurrent((prev) => (prev + 1) % total);
     }, 3200);
 
     return () => clearInterval(timerId);
-  }, [isPlaying, total, isHovering]);
+  }, [isPlaying, total, isHovering, isMobile]);
 
   const nextSlide = () => {
     setCurrent((prev) => (prev + 1) % total);
