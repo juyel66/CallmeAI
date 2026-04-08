@@ -49,7 +49,7 @@ const Footer = () => {
                                     href="/demo"
                                     className="text-[14px] text-[#A0AEC0] transition-colors duration-200 hover:text-white"
                                 >
-                                    Book a Call
+                                    Book a Demo
                                 </Link>
                             </li>
                         </ul>
