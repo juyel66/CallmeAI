@@ -3,6 +3,7 @@
 import ContactSalesButton from "@/app/Shared/Button/ContactSalesButton";
 import GetStatedButton from "@/app/Shared/Button/GetStatedButton";
 import ScaleNowButton from "@/app/Shared/Button/ScaleNowButton";
+import Link from "next/link";
 
 const plans = [
   {
@@ -132,7 +133,7 @@ const PricingCard = () => {
               )}
 
               {plan.title === "Growth" && (
-                <button className="mt-4  rounded-lg bg-[#8E00FF] px-4 py-4.5 text-sm font-medium text-white transition hover:bg-[#A533FF]">
+                <Link href="/contact" className="mt-4  rounded-lg bg-[#8E00FF] px-4 py-4.5 text-sm font-medium text-white transition hover:bg-[#A533FF]">
                   <span className="flex items-center justify-center gap-2">
                     {plan.button}
                     <svg
@@ -149,7 +150,7 @@ const PricingCard = () => {
                       <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
                   </span>
-                </button>
+                </Link>
               )}
 
               {plan.title === "Enterprise" && (

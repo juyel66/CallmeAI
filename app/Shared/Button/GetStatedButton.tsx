@@ -98,7 +98,7 @@ const GetStatedButton = ({ className = "" }: GetStatedButtonProps) => {
             data-initial-text="#6F14F1"
             data-initial-border="#C8B5FF"
             data-initial-bg="#FFFFFF"
-            onClick={() => router.push("#")}
+            onClick={() => router.push("/contact")}
             onMouseEnter={animateHoverIn}
             onMouseLeave={animateHoverOut}
             className={`relative w-full cursor-pointer overflow-hidden rounded-xl border-2 border-[#C8B5FF] bg-white px-6 py-3 text-base font-semibold text-[#6F14F1] sm:w-auto sm:px-8 sm:py-4 sm:text-lg ${className}`}
