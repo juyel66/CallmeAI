@@ -2,7 +2,7 @@ import Image from "next/image";
 
 
 import iconsImage from '../../../public/images/Frame 2043683613.svg';
-import iconsImageMobile from '../../../public/images/1212.png';
+// import iconsImageMobile from '../../../public/images/1212.png';
 
 const Connect = () => {
   return (
@@ -15,7 +15,7 @@ const Connect = () => {
               alt="Flowchart"
               width={300}
               height={200}
-              className="hidden h-auto w-[180px] sm:w-[260px] md:w-[280px] lg:block lg:w-[320px] max-w-full transition-all duration-300"
+              className="hidden h-auto w-[180px] sm:w-[260px] md:w-[280px] lg:block lg:w-[420px] max-w-full transition-all duration-300"
             />
             <Image
               src={iconsImage}
