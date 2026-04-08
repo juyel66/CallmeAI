@@ -10,6 +10,7 @@ const Footer = () => {
                 <div className="grid grid-cols-1 gap-12 text-center md:grid-cols-4 md:text-left">
                     {/* Logo & Tagline */}
                     <div className="col-span-1">
+                        
                         <a href="/" className=" inline-block">
                             <Image
                             src="/images/image 1.svg"
@@ -19,9 +20,13 @@ const Footer = () => {
                             className="mb-6 h-auto w-auto"
                         />
                         </a>
-                        <p className="text-[14px] leading-[22px] text-[#8B95A5]">
-                            AI phone agents for lead contact, follow-up, and calendar bookings.
+
+                        <p className=" text-[14px] leading-[22px] text-[#8B95A5]">
+                            AI phone agents for lead contact, follow-up, <br /> and calendar bookings.
                         </p>
+
+
+                      
                     </div>
 
                     {/* Product */}
