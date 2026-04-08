@@ -63,16 +63,16 @@ const SolutionHowItWork = () => {
       let isDragging = false;
       let dragStartY = 0;
       let dragStartOffset = 0;
-      const focusRatio = 0;
 
       const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
 
       const refreshBounds = () => {
-        const focusOffset = rail.clientHeight * focusRatio;
-        const lastCardTop = cards.length ? cards[cards.length - 1].offsetTop : 0;
+        const thirdLastIndex = Math.max(cards.length - 3, 0);
+        const thirdLastTop = cards.length ? cards[thirdLastIndex].offsetTop : 0;
+        const naturalMax = Math.max(track.scrollHeight - rail.clientHeight, 0);
 
-        // Allow scrolling until the last card's top reaches the rail top.
-        maxOffset = Math.max(lastCardTop - focusOffset, 0);
+        // Stop where the last three cards stay in view.
+        maxOffset = Math.min(Math.max(thirdLastTop, 0), naturalMax);
 
         // Keep initial viewport locked to the first three full cards.
         currentOffset = clamp(currentOffset, 0, maxOffset);
@@ -206,7 +206,7 @@ const SolutionHowItWork = () => {
 
             <div
               ref={cardsRailRef}
-              className="relative h-116 overflow-hidden pr-2 select-none cursor-grab active:cursor-grabbing"
+              className="relative h-106 overflow-hidden pr-2 select-none cursor-grab active:cursor-grabbing"
             >
               <div ref={cardsTrackRef} className="flex flex-col gap-2 pb-0 will-change-transform">
                 {data.map((item, index) => {
@@ -222,15 +222,15 @@ const SolutionHowItWork = () => {
                       <button
                         type="button"
                         className={`absolute top-1/2 -translate-y-1/2 rounded-full bg-[#8A2BE2] transition-all duration-200 ${
-                          isActive ? "left-1.5 h-8 w-8 -ml-0.5" : "left-3 h-6  w-6"
+                          isActive ? "left-1.5 h-8 w-8 ml-0.5" : "left-3 h-6  w-6"
                         }`}
                       />
 
                       <div
-                        className={`h-34 rounded-xl border p-6 text-start shadow-sm transition-all duration-300 ${
+                        className={`h-34 rounded-xl hover:border hover:border-purple-600 border p-6 text-start shadow-sm transition-all duration-300 ${
                           isActive
-                            ? "border-white bg-white shadow-[0_14px_30px_rgba(0,0,0,0.10)]"
-                            : "border-[#D3D3D3] bg-[#EDEDED]"
+                            ? "border-white  bg-white shadow-[0_14px_30px_rgba(0,0,0,0.10)]"
+                            : "border-[#D3D3D3]  bg-[#EDEDED]"
                         }`}
                       >
                         <h3 className={`mt-1 text-base font-semibold sm:text-lg ${isActive ? "text-black" : "text-gray-700"}`}>
