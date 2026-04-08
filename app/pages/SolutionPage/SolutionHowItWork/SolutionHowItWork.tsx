@@ -267,7 +267,7 @@ const SolutionHowItWork = () => {
               href="/contact"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#8E00FF] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#6f14f1] sm:px-6 sm:py-3"
             >
-              Book a Call
+              Book a Demo
               <svg
                 width="17"
                 height="17"
